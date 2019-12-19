@@ -1,0 +1,3 @@
+[submodule "public"]
+	path = public
+	url = git@github.com:xdhuxc/xdhuxc.github.io.git
