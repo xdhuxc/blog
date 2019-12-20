@@ -4,7 +4,9 @@ date = "2019-11-21"
 lastmod = "2019-11-21"
 description = ""
 tags = [
-    "AWS"
+    "AWS",
+    "S3",
+    "CLI"
 ]
 categories = [
     "技术"
