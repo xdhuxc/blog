@@ -269,7 +269,7 @@ hasCJKLanguage = true # 设置为 true，则会在内容中自动检测中文/�
 
 3、博客字数和阅读时长统计显示效果如下图所示：
 <center>
-<img src="http://pr9wm50t1.bkt.clouddn.com/image/png/word_count.png" width="800px" height="300px" />
+<img src="/image/word_count.png" width="800px" height="300px" />
 图 3 · 博客字数和阅读时长统计显示效果
 </center>
 
