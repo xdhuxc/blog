@@ -6,7 +6,7 @@ tags = [
     "Consul"
 ]
 categories = [
-    "Consul"
+    "技术"
 ]
 +++
 

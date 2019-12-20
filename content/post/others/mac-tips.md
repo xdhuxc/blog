@@ -7,7 +7,7 @@ tags = [
     "Mac"
 ]
 categories = [
-    "Mac"
+    "技术"
 ]
 +++
 

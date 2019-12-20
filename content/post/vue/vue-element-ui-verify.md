@@ -5,13 +5,10 @@ lastmod = "2019-06-02"
 description = ""
 tags = [
     "Vue",
-    "表单校验",
-    "Element-UI"
+    "表单校验"
 ]
 categories = [
-    "Vue",
-    "表单校验",
-    "Element-UI"
+    "技术"
 ]
 +++
 

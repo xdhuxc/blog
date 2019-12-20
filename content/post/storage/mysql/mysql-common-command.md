@@ -4,10 +4,11 @@ date = "2018-07-29"
 lastmod = "2019-07-29"
 description = ""
 tags = [
-    "MySQL"
+    "MySQL",
+    "数据库"
 ]
 categories = [
-    "MySQL"
+    "技术"
 ]
 +++
 

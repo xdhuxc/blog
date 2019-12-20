@@ -8,8 +8,7 @@ tags = [
     "glog"
 ]
 categories = [
-    "Golang",
-    "glog"
+    "技术"
 ]
 +++
 

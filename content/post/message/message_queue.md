@@ -3,12 +3,11 @@ title = "消息队列（一）"
 date = "2019-07-10"
 lastmod = "2019-07-10"
 tags = [
-    "Message Queue",
+    "MQ",
     "RabbitMQ"
 ]
 categories = [
-    "Message Queue",
-    "RabbitMQ"
+    "技术"
 ]
 +++
 

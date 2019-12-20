@@ -5,12 +5,11 @@ date = "2018-07-20"
 lastmod = "2019-05-16"
 description = ""
 tags = [
-    "Database",
+    "数据库",
     "MongoDB"
 ]
 categories = [
-    "Database",
-    "MongoDB"
+    "技术"
 ]
 +++
 

@@ -6,7 +6,7 @@ tags = [
     "CSS"
 ]
 categories = [
-    "CSS"
+    "技术"
 ]
 +++
 <body>

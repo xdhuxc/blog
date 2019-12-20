@@ -4,11 +4,11 @@ date = "2018-06-28"
 lastmod = "2018-06-28"
 tags = [
     "Redis",
-    "Docker"
+    "Docker",
+    "数据库"
 ]
 categories = [
-    "Redis",
-    "Docker"
+    "技术"
 ]
 +++
 

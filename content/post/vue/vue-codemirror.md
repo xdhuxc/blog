@@ -8,8 +8,7 @@ tags = [
     "CodeMirror"
 ]
 categories = [
-    "Vue",
-    "CodeMirror"
+    "技术"
 ]
 +++
 

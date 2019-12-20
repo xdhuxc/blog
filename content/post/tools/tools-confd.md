@@ -7,8 +7,7 @@ tags = [
     "DynamoDB"
 ]
 categories = [
-    "confd",
-    "DynamoDB"
+    "技术"
 ]
 +++
 

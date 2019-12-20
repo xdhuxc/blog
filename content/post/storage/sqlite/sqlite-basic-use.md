@@ -3,11 +3,11 @@ title = "sqlite 基本使用"
 date = "2019-08-16"
 tags = [
     "SQL",
-    "sqlite"
+    "sqlite",
+    "数据库"
 ]
 categories = [
-    "SQL",
-    "sqlite"
+    "技术"
 ]
 +++
 

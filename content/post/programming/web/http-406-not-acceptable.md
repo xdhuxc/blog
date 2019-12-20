@@ -5,13 +5,10 @@ lastmod = "2019-06-02"
 description = ""
 tags = [
     "HTTP",
-    "406",
-    "axios"
+    "Web"
 ]
 categories = [
-    "HTTP",
-    "406",
-    "axios"
+    "技术"
 ]
 +++
 

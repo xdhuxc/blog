@@ -6,7 +6,7 @@ tags = [
     "Vue"
 ]
 categories = [
-    "Vue"
+    "技术"
 ]
 +++
 

@@ -3,10 +3,10 @@ title = "常用快捷键"
 date = "2019-07-09"
 lastmod = "2019-07-09"
 tags = [
-    "shortcut key"
+    "快捷键"
 ]
 categories = [
-    "shortcut key"
+    "技术"
 ]
 +++
 

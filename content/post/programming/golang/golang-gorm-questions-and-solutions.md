@@ -9,9 +9,7 @@ tags = [
     "GORM"
 ]
 categories = [
-    "MySQL",
-    "Golang",
-    "GORM"
+    "技术"
 ]
 +++
 

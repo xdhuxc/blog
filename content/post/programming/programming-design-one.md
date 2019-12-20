@@ -3,10 +3,10 @@ title = "程序设计（一）"
 date = "2019-07-09"
 lastmod = "2019-07-09"
 tags = [
-    "Programming",
+    "编程"
 ]
 categories = [
-    "programming"
+    "技术"
 ]
 +++
 
@@ -69,6 +69,7 @@ categories = [
 
 ### 真理
 * 好的架构不是设计出来的，是演进出来的。
+
 
 ### 待考虑问题
 

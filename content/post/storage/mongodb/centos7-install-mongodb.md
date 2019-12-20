@@ -6,13 +6,11 @@ lastmod = "2018-07-06"
 description = ""
 tags = [
     "CentOS7",
-    "Database",
+    "数据库",
     "MongoDB"
 ]
 categories = [
-    "CentOS7",
-    "Database",
-    "MongoDB"
+    "技术"
 ]
 +++
 

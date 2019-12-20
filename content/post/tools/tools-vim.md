@@ -6,7 +6,7 @@ tags = [
     "Vim"
 ]
 categories = [
-    "Vim"
+    "技术"
 ]
 +++
 

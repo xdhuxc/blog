@@ -9,8 +9,7 @@ tags = [
     "Hugo"
 ]
 categories = [
-    "GitHub",
-     "Hugo"
+    "技术"
 ]
 +++
 摘要：

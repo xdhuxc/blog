@@ -5,12 +5,10 @@ lastmod = "2019-10-10"
 tags = [
     "Grafana",
     "DevOps",
-    "Clickhouse"
+    "clickhouse"
 ]
 categories = [
-    "Grafana",
-    "DevOps",
-    "Clickhouse"
+    "技术"
 ]
 +++
 

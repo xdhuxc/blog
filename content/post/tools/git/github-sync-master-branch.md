@@ -8,8 +8,7 @@ tags = [
     "GitHub"
 ]
 categories = [
-    "Git",
-    "GitHub"
+    "技术"
 ]
 +++
 

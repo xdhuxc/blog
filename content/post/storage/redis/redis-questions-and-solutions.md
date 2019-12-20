@@ -3,10 +3,11 @@ title = "Redis 常见问题及解决"
 date = "2018-06-28"
 lastmod = "2018-06-28"
 tags = [
-    "Redis"
+    "Redis",
+    "数据库"
 ]
 categories = [
-    "Redis"
+    "技术"
 ]
 +++
 

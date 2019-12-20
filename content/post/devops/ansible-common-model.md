@@ -6,12 +6,10 @@ lastmod = "2018-05-02"
 description = ""
 tags = [
     "ansible",
-    "DevOps",
-    "IT"
+    "DevOps"
 ]
 categories = [
-    "ansible",
-    "DevOps",
+    "技术"
 ]
 +++
 

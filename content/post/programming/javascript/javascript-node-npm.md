@@ -8,9 +8,7 @@ tags = [
     "npm"
 ]
 categories = [
-    "JavaScript",
-    "Node",
-    "npm"
+    "技术"
 ]
 +++
 

@@ -6,11 +6,10 @@ lastmod = "2018-10-25"
 description = ""
 tags = [
     "SpringBoot",
-    "JMX"
+    "Java"
 ]
 categories = [
-    "SpringBoot",
-    "JMX"
+    "技术"
 ]
 +++
 

@@ -3,10 +3,11 @@ title = "使用 golang 操作 excel 表格"
 date = "2019-10-22"
 lastmod = "2019-10-22"
 tags = [
-    "Golang"
+    "Golang",
+    "Excel"
 ]
 categories = [
-    "Golang"
+    "技术"
 ]
 +++
 

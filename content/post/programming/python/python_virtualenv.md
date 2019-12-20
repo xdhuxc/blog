@@ -7,8 +7,7 @@ tags = [
     "virtualenv"
 ]
 categories = [
-    "Python",
-    "virtualenv"
+    "技术"
 ]
 +++
 

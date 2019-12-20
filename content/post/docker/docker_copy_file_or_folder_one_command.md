@@ -3,10 +3,11 @@ title = "Docker 合并多条 COPY 命令"
 date = "2019-07-03"
 lastmod = "2018-07-03"
 tags = [
-    "Docker"
+    "Docker",
+    "Dockerfile"
 ]
 categories = [
-    "Docker"
+    "技术"
 ]
 +++
 

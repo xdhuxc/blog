@@ -7,7 +7,7 @@ tags = [
     "Element-UI"
 ]
 categories = [
-    "前端技术"
+    "技术"
 ]
 +++
 

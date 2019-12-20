@@ -9,9 +9,7 @@ tags = [
     "Vue"
 ]
 categories = [
-    "Golang",
-    "WebSocket",
-    "Vue"
+    "技术"
 ]
 +++
 

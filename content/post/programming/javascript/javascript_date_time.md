@@ -4,14 +4,10 @@ date = "2019-05-19"
 lastmod = "2019-05-19"
 description = ""
 tags = [
-    "JavaScript",
-    "Date",
-    "Time"
+    "JavaScript"
 ]
 categories = [
-    "JavaScript",
-    "Date",
-    "Time"
+    "技术"
 ]
 +++
 

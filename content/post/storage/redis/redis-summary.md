@@ -3,10 +3,11 @@ title = "Redis 概述"
 date = "2018-06-27"
 lastmod = "2018-06-27"
 tags = [
-    "Redis"
+    "Redis",
+    "数据库"
 ]
 categories = [
-    "Redis"
+    "技术"
 ]
 +++
 
