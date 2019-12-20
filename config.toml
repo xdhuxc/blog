@@ -20,7 +20,7 @@ disqusShortname = ""      # disqus_shortname
 googleAnalytics = "UA-139962821-1"      # UA-XXXXXXXX-X
 copyright = "xdhuxc 版权所有"            # default: author.name ↓        # 默认为下面配置的 author.name ↓
 
-[markup.goldmark.renderer]
+[markup.goldmark.renderer]   # 允许原生 HTML 标签
 unsafe= true
 
 [author]                  # essential                     # 必需
