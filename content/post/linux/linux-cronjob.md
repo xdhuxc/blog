@@ -71,7 +71,15 @@ crontab [-u user] file crontab [-u user] [-e | -l | -r | -i]
 ```
 5、每周六、周日的12点30分执行
 ```markdown
-30 12 * * 6,0
+30 12 * * 6,0 command
+```
+6、每隔 60 分钟执行一次
+```markdown
+*/60 * * * * command
+```
+7、整点执行
+```markdown
+0 * * * * command # 将在每个整点执行 command
 ```
 
 

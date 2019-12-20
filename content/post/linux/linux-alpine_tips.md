@@ -1,5 +1,5 @@
 +++
-title = "Linux 其他发行版中安装工具包"
+title = "Linux 发行版中安装工具包"
 date = "2018-09-12"
 lastmod = "2018-09-13"
 tags = [
