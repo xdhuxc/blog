@@ -1,5 +1,5 @@
 +++
-title = "Linux 发行版中安装工具包"
+title = "在 Linux 发行版中安装工具包"
 date = "2018-09-12"
 lastmod = "2018-09-13"
 tags = [
@@ -14,23 +14,34 @@ categories = [
 
 <!--more-->
 
-### 在 alpine 中安装 telnet
-执行以下命令安装 telnet
+### alpine
+> 使用 apk 命令来安装软件包 
+
+1）安装 telnet
 ```markdown
 apk add busybox-extras
 ```
 
-### 在 debain 中安装 nc 命令
+2）安装 make
+```markdown
+apk add make
+```
+
+### debain
+> 使用 apt-get 命令来安装工具包
+1）安装 nc 命令
 ```markdown
 apt-get update && install netcat
 ```
 
-### 在 debain 中安装 ps 命令
+2）安装 ps 命令
 ```markdown
 apt-get update && apt-get install procps
 ```
 
-### 在 debain 中安装 curl 命令
+3）安装 curl 命令
 ```markdown
 apt-get update && apt-get install curl
+或者
+apt-get update && apt-get install net-tools
 ```

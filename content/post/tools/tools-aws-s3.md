@@ -13,19 +13,19 @@ categories = [
 ]
 +++
 
-本篇博客记录下使用 aws-cli 的用法，AWS 有非常详尽的文档，但我们记录下来后，下次就可以直接使用了。
+本篇博客记录了使用 aws-cli 来操作 S3 桶的用法，尽管 AWS 有非常详尽的文档，但我们记录下来后，下次就可以直接复制使用了。
 
 <!--more-->
 
 ### 安装 aws-cli 和配置认证信息
 
-#### 安装 aws-cli
+1）安装 aws-cli
 使用 `pip` 安装 `aws-cli`，命令如下：
 ```markdown
 pip install -y awscli
 ```
 
-#### 配置认证信息
+2）配置认证信息
 执行 `aws` 命令前，需要在 `~/.aws/credentials` 中配置访问 `AWS` 的 `Access Key` 和 `Secret Key`，如下所示：
 ```markdown
 [default]

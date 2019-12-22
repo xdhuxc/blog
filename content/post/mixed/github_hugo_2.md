@@ -12,7 +12,6 @@ categories = [
     "技术"
 ]
 +++
-摘要：
 
 　　本篇博客主要介绍了使用 Hugo 和 GitHub搭建个人网站的一些高级功能，包括在云端存储图片、评论功能、网站统计、阅读数量统计、文字统计和阅读时长预估等功能。
 
@@ -24,7 +23,7 @@ categories = [
 使用 [七牛云](https://portal.qiniu.com/signup?code=3lcz1eyk5rq6q) 的对象存储来存放我们的图片，然后将图片的外部链接写在 markdown 文档之中，如下所示：
 ```markdown
 <center>
-<img src="http://pr9wm50t1.bkt.clouddn.com/image/png/point.png" width="800px" height="300px" />
+<img src="/image/point.png" width="800px" height="300px" />
 图 1 · 输入中 `·` 号 （图注）
 </center>
 ```
@@ -122,7 +121,7 @@ yourdisqusShortname 就是 disqus 个人主页下的 Account 部分的 Username 
 
 4、评论功能效果如下图所示：
 <center>
-<img src="http://pr9wm50t1.bkt.clouddn.com/image/png/comment_result.png" width="800px" height="300px" />
+<img src="/image/comment_result.png" width="800px" height="300px" />
 图 1 · 评论功能效果
 </center>
 
@@ -187,7 +186,7 @@ var _hmt = _hmt || [];
 
 5、百度统计效果图
 <center>
-<img src="http://pr9wm50t1.bkt.clouddn.com/image/png/baidu_analytics_result.png" width="800px" height="300px" />
+<img src="/image/baidu_analytics_result.png" width="800px" height="300px" />
 图 2 · 百度统计效果图
 </center>
 

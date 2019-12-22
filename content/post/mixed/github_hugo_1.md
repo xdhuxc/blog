@@ -20,14 +20,14 @@ categories = [
 
 ### Hugo 的安装的基本使用
 1、准备工作，创建工作目录 `blog`
-```
+```markdown
 wanghuans-MacBook-Pro:~ wanghuan$ mkdir blog
 wanghuans-MacBook-Pro:blog wanghuan$ pwd
 /Users/wanghuan/blog
 ```
 
 2、安装 Hugo
-```
+```markdown
 wanghuans-MacBook-Pro:blog wanghuan$ brew install hugo   # 安装 hugo
 Updating Homebrew...
 ==> Auto-updated Homebrew!
@@ -63,7 +63,7 @@ Hugo Static Site Generator v0.55.5/extended darwin/amd64 BuildDate: unknown
 ```
 
 3、创建网站
-```
+```markdown
 wanghuans-MacBook-Pro:blog wanghuan$ hugo new site xdhuxc
 Congratulations! Your new Hugo site is created in /Users/wanghuan/blog/xdhuxc.
 
@@ -80,7 +80,7 @@ Visit https://gohugo.io/ for quickstart guide and full documentation.
 ```
 
 4、安装主题
-```
+```markdown
 wanghuans-MacBook-Pro:blog wanghuan$ cd xdhuxc/themes/
 wanghuans-MacBook-Pro:themes wanghuan$ git clone https://github.com/yoshiharuyamashita/blackburn.git
 Cloning into 'blackburn'...
@@ -105,7 +105,7 @@ archetypes	config.toml	content		data		layouts		static		themes
 * config.toml：网站的配置文件，包括 baseurl，title，copyright 等网站参数。
 
 在 `config.toml` 中加入如下内容
-```
+```markdown
 baseurl = "https://xdhuxc.github.io/" # Make sure to end baseurl with a '/'
 title = "xdhuxc"
 author = "xdhuxc"
@@ -202,7 +202,7 @@ categories = [
 baseurl 的值在本地测试时无关紧要，但是当部署到 GitHub 上时，需要将其配置为 xdhuxc.github.io 这样的域名。另外，如果使用自有域名，还需要在 GitHub 上进行关联，具体方法可参考：https://help.github.com/en/articles/using-a-custom-domain-with-github-pages
 
 5、启动网站
-```
+```markdown
 hugo server --buildDrafts -w
 ```
 参数说明：

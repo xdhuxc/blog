@@ -13,12 +13,12 @@ categories = [
 ]
 +++
 
-#### Ansible 简介
+### Ansible 简介
 Ansible 是一种集成IT系统的配置管理、应用部署、执行特定任务的运维工具。
 
 Ansible 基于 Python 语言实现，由 Paramiko（由 Python 实现的高质量 OpenSSH 库） 和 PyYAML 两个关键模块构建。
 
-#### Ansible 特点
+### Ansible 特点
 * 部署简单，只需要在主控端部署 ansible 环境，被控端无需做任何操作。
 * 默认使用 SSH（Secure Shell）协议对设备进行管理。
 * 主从集中化管理。
@@ -29,7 +29,7 @@ Ansible 基于 Python 语言实现，由 Paramiko（由 Python 实现的高质�
 * 提供一个功能强大、操作性强的 Web 管理界面和 REST API 接口--- AWX 平台。
 
 
-#### Ansible 与 SaltStack
+### Ansible 与 SaltStack
 
 #### 相同点
 都具备功能强大、灵活的系统管理、状态配置，都使用 YAML 格式来描述配置，两者都提供丰富的模板及 API，对云计算和大数据都有很好的支持。
@@ -37,15 +37,15 @@ Ansible 基于 Python 语言实现，由 Paramiko（由 Python 实现的高质�
 #### 区别
 最大的区别是 Ansible 无需在被监控主机部署任何客户端代理，默认通过 SSH 通道进行远程命令执行或下发配置。
 
-#### Ansible 使用
+### Ansible 使用
 
-##### ansible 安装
+#### ansible 安装
 使用 YUM 安装 ansible
 ```
 yum install -y ansible
 ```
 
-##### ansible 配置文件
+#### ansible 配置文件
 ansible 的配置文件在 `/etc/ansible` 目录下
 ```
 [root@xdhuxc ~]# ls /etc/ansible/
@@ -56,7 +56,7 @@ ansible.cfg  hosts  roles
 * hosts 用来配置被管理的机器
 * roles 是一个目录，playbook 将使用它。
 
-##### ansible 使用
+#### ansible 使用
 
 （1）ansible 管理机与被管理机做秘钥认证
 
