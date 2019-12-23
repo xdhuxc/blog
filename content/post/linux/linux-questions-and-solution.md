@@ -34,3 +34,15 @@ PubkeyAuthentication yes
 nameserver 8.8.8.8 #google域名服务器
 nameserver 8.8.4.4 #google域名服务器
 ```
+
+3、使用 `Linux` 服务启动 `confd` 进程，启动时，报错如下：
+```markdown
+Mar 18 02:26:38 ip-172-27-124-70.ap-southeast-1.compute.internal confd[28240]: 2019-03-18T02:26:38Z ip-172-27-124-70.ap-southeast-1.compute.internal /usr/bin/confd[28240]: FATAL UserHomeNotFound: user home directory not found.
+```
+解决：
+在 `confd.service` （`/usr/lib/systemd/system/confd.service`）中加入如下环境变量
+```markdown
+[Service]
+Environment="HOME=/root"
+```
+重启 `confd` 服务即可。

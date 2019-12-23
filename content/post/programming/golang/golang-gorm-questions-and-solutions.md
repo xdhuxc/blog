@@ -164,3 +164,49 @@ Count() 方法写在 Where() 方法之前，是在仅附加 where 条件之后�
 [2019-11-12 11:26:53]  [176.48ms]  SELECT * FROM `user`  WHERE (tags->'$.group' = 'Math') ORDER BY update_time desc LIMIT 10 OFFSET 0  
 [4 rows affected or returned ] 
 ```
+
+### 使用 *restful.Request.ReadEntity 方法读取 JSON 格式数据到结构体中时，出现如下错误：
+```angular2html
+json: cannot unmarshal string into Go struct field Receiver.resolved of type bool
+```
+原因：输入格式有错误，将 JSON 格式中 bool 值写成了 字符串 true，改为 JSON 格式的 bool 值即可解决该问题。
+
+### range 的数据复制
+
+对关联的数据模型进行操作时，使用如下代码
+```markdown
+var ug []models.UserGroup
+for _, user := range ug {
+  var role models.Role
+  if result := ugs.db.Model(&models.Role{}).
+    Where("id = ?", user.RoleID).
+    Select([]string{"id", "name"}).
+    First(&role); result.Error != nil {
+    continue
+  }
+  user.RoleName = role.Name
+}
+```
+则对 user.RoleName 的赋值，只在大括号中有效，而使用下面的代码
+```markdown
+ugLength := len(ug)
+for i := 0; i < ugLength; i++ {
+  var role models.Role
+  if result := ugs.db.Model(&models.Role{}).
+    Where("id = ?", ug[i].RoleID).
+    Select([]string{"id", "name"}).
+    First(&role); result.Error != nil {
+    continue
+  }
+  ug[i].RoleName = role.Name
+}
+```
+则对 `user.RoleName` 的赋值在大括号外也有效。
+原因：使用 `range` 循环非指针型数组时，实际上是执行了深拷贝，在遍历复制出来的数据，原来的数据并没有改变。
+
+
+### GORM 注意事项
+
+1、如果数据记录不存在，使用 Delete() 方法删除该记录，result.Error 返回值为 nil。
+
+2、GORM 中默认使用 id 为主键进行删除和修改，如果自定义数据库主键名称，可能会导致删除和修改操作失败。
