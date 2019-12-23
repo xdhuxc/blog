@@ -74,3 +74,13 @@ timedatectl set-timezone Asia/Shanghai
 date +%s
 ```
 
+9、删除文件和目录时不删除隐藏的文件和目录
+```markdown
+rm -r ./*
+```
+想删除隐藏的目录或文件，需要使用如下的命令
+```markdown
+ls -a | xargs rm -r 
+```
+但是不能删除 `.` 和 `..` 目录，所以该命令的返回值为 `1`。
+

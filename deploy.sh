@@ -12,6 +12,10 @@ git add -A
 git commit -m "$msg"
 git push origin master
 
+# delete previous build
+cd public
+rm -r ./*
+cd ..
 
 echo -e "\033[0;32mBuild the blog.\033[0m"
 hugo -t even  # if using a theme, replace with `hugo -t <YOURTHEME>`
@@ -20,7 +24,6 @@ hugo -t even  # if using a theme, replace with `hugo -t <YOURTHEME>`
 cd public
 # Add changes to git.
 git add .
-
 
 git commit -m "$msg"
 
