@@ -37,7 +37,7 @@ categories = [
 　　在文档中书写外国人名或者书名时，经常会用到中 `·` 号，但是键盘上 `1` 前面的中 `·` 需要使用快捷键配合打出，有时可能无法使用。这时，我们可以在中文输入法下，输入 `dian`，如下图所示：
 
 <center>
-<img src="http://pr9wm50t1.bkt.clouddn.com/point.png" width="800px" height="300px" />
+<img src="/image/point.png" width="800px" height="300px" />
 图 1 · 输入中 `·` 号
 </center>
 
