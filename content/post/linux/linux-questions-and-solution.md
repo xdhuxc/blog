@@ -46,3 +46,42 @@ Mar 18 02:26:38 ip-172-27-124-70.ap-southeast-1.compute.internal confd[28240]: 2
 Environment="HOME=/root"
 ```
 重启 `confd` 服务即可。
+
+4、在 `Linux` 下执行脚本，报如下错误：
+```
+[root@localhost mesos_install]# ./install.sh -h
+-bash: ./install.sh: /bin/bash^M: bad interpreter: No such file or directory
+```
+
+解决：安装dos2unix，将DOS格式文本文件转换成Unix格式，使用如下命令：
+```
+yum install -y dos2unix
+```
+使用方法：
+```
+dos2unix filename_1 filename_2 filename_3
+```
+
+5、使用curl命令从网络上下载文件时，报错如下：
+```
+[root@localhost ~]# curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (35) Peer reports incompatible or unsupported protocol version.
+```
+解决：
+
+（1）更新curl
+```
+yum update -y curl
+```
+更新curl后还是报一样的错误
+
+（2）更新nss nspr
+```
+yum update -y nss nspr nss-util
+```
+更新后问题得到解决。
+
+仅更新（1）和仅更新（2）都不起作用
