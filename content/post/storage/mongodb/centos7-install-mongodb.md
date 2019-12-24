@@ -21,7 +21,7 @@ categories = [
 
 ### 准备工作
 （1）在 `/etc/yum.repos.d` 目录下创建文件 `mongodb-org-4.0.repo`，内容为：
-```
+```markdown
 [mongodb-org-4.0]
 name=MongoDB Repository
 baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/development/x86_64/
@@ -29,61 +29,70 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-3.8.asc
 ```
+
 （2）关闭SELinux
-```
+```markdown
 setenforce 0
 ```
+
 ### 安装MongoDB
 执行如下命令安装MongoDB
-```
+```markdown
 yum install -y mongodb-org-unstable.x86_64
 ```
 MongoDB的配置文件路径为：
-```
+```markdown
 /etc/mongod.conf
 ```
 在该文件中配置有MongoDB的日志文件路径和数据文件路径
 日志文件路径为：
-```
+```markdown
 /var/log/mongodb
 ```
 数据文件路径为：
-```
+```markdown
 /var/lib/mongo
 ```
 如果使用其他用户启动 `MongoDB` 进程，需要确保该用户对 `/var/log/mongodb`  和`/var/lib/mongo` 有访问权限。
 
 ### MongoDB进程管理命令
 1、查看 `MongoDB` 的启动状态
-```
+```markdown
 systemctl status mongod
 ```
+
 2、停止 `MongoDB` 进程
-```
+```markdown
 systemctl stop mongod
 ```
+
 3、重启 `MongoDB` 进程
-```
+```markdown
 systemctl restart mongod
 ```
+
 4、启动 `MongoDB` shell
-```
+```markdown
 mongo --host 127.0.0.1:27017
 ```
+
 5、卸载 `MongoDB`
 
 ① 停止 `MongoDB` 进程
-```
+```markdown
 systemctl stop mongod
 ```
+
 ② 删除 `MongoDB` 的安装包
-```
+```markdown
 yum erase $(rpm -qa | grep mongodb-org)
 ```
+
 ③ 删除 `MongoDB` 数据和日志目录
-```
+```markdown
 rm -f /var/log/mongodb
 rm -f /var/lib/mongo
 ```
+
 在 `Redhat` 或者 `CentOS` 上安装 `MongoDB` 的官方文档地址：
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/

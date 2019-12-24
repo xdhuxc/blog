@@ -14,7 +14,6 @@ categories = [
 
 <!--more-->
 
-
 ### ModuleNotFoundError: No module named 'Crypto'
 代码里面从 Crypto 中导入 AES 类，
 ```markdown
@@ -96,3 +95,10 @@ sys.setdefaultencoding('utf-8')  # 设置 'utf-8'
 otp\u3002", "code": 4}
 ```
 解决：添加 ensure_ascii=False 参数，ensure_ascii=True 保证 dumps() 之后的结果里所有的字符都能够被 ascii 表示，因此经过 dumps() 以后的str里，汉字会变成对应的 unicode。因此，当字典中含有中文时，一定要使用 ensure_ascii=False。
+
+### `docker logs` 命令却不见 `print()` 函数的输出内容
+编写 python 脚本，使用 docker 容器运行，启动命令为 `ENTRYPOINT ["python3", "/usr/local/bin/test.py"]`，容器启动正常，脚本执行正常，但是使用 `docker logs` 命令却不见 `print()` 函数的输出内容。
+
+原因：python 的缓存机制，stdout 和 stderr 默认都是指向屏幕的，但 stderr 是无缓存的，程序向 stderr 输出的字符，会直接打印到屏幕上。而 stdout 是有缓存的，只有遇到换行或积累到一定的大小，才会输出到屏幕上。
+
+解决：python 命令后面加上 `-u` （unbuffered）参数，强制其标准输出不通过缓存，直接打印到屏幕上。所以，将 `Dockerfile` 中的 `ENTRYPOINT` 命令改写为：`ENTRYPOINT ["python3", "-u", "/usr/local/bin/test.py"]`
