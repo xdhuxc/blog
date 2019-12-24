@@ -1,14 +1,14 @@
 +++
-title = "写作时实用输入小技巧"
+title = "Markdown 写作时输入小技巧"
 linktitle = "小技巧"
 date = "2019-05-14"
 lastmod = "2019-05-14"
 description = ""
 tags = [
-    "技巧"
+    "Markdown"
 ]
 categories = [
-    "人间世"
+    "技术"
 ]
 +++
 
@@ -50,20 +50,4 @@ categories = [
 
 
 
-                                       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                
