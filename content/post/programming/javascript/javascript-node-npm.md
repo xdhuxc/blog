@@ -1,5 +1,5 @@
 +++
-title = "JavaScript 常用代码"
+title = "升级 NPM 和 Node"
 date = "2019-10-16"
 lastmod = "2019-10-16"
 tags = [
