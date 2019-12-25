@@ -114,6 +114,7 @@ profiler.collector.ip=127.0.0.1
 
 
 ### 部署测试应用
+
 1）修改 tomcat 的 catalina.sh 文件，加入如下内容
 ```markdown
 CATALINA_OPTS="$CATALINA_OPTS -javaagent:/root/pinpoint/pinpoint-agent/pinpoint-bootstrap-1.8.0.jar"
@@ -153,8 +154,6 @@ http://172.20.26.149:8080/pinpoint-web
 <center>
 <img src="/image/mixed/pinpoint/pinpoint.png" width="800px" height="300px" />
 </center>
-
-
 
 ### 参考资料
 
