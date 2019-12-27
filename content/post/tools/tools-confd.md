@@ -24,8 +24,8 @@ confd 可以从后台数据源拉取数据，以 golang 模板的方式编写配
 wget https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64
 # 重命名该文件
 mv confd-0.16.0-linux-amd64 confd
-# 移动至 PATH 路径下
-cp confd /usr/bin/
+# 添加执行权限并移动至 PATH 路径下
+chmod +x confd && cp confd /usr/bin/
 ```
 
 也可自行根据 [confd 源码](https://github.com/kelseyhightower/confd) 构建
@@ -33,8 +33,10 @@ cp confd /usr/bin/
 ### confd 配置及运行
 1、创建 confdir，用于存放 confd 的配置文件和模板文件
 ```markdown
-mkdir -p /etc/confd/conf.d    // 存放 confd 使用的配置文件
-mkdir -p /etc/confd/templates // 用于存放模板文件，生成最终的配置文件
+# 存放 confd 使用的配置文件
+mkdir -p /etc/confd/conf.d    
+# 用于存放模板文件，生成最终的配置文件
+mkdir -p /etc/confd/templates
 ```
 
 2、创建模板文件及其 confd 配置文件

@@ -1,5 +1,5 @@
 +++
-title = "基于 docker 方式部署 etcd"
+title = "部署 etcd 的常用方法"
 date = "2018-11-11"
 lastmod = "2019-01-10"
 tags = [
@@ -11,13 +11,11 @@ categories = [
 ]
 +++
 
-本篇博客介绍了基于 docker 容器部署 etcd。
+本篇博客介绍了几种常用的部署 etcd 的方法。
 
 <!--more-->
 
-### 部署 Etcd
-
-#### 基于 docker 方式部署 etcd
+### 基于 docker 方式部署 etcd
 1、拉取 etcd 镜像
 ```angular2html
 docker pull gcr.io/etcd-development/etcd:v3.2.25
@@ -44,7 +42,23 @@ docker run -d \
     --initial-cluster-state new
 ```
 
-#### 参考资料
+### 使用 yum 安装 etcd
+1、使用 yum 直接安装 etcd
+```markdown
+yum install etcd -y
+```
+
+2、启动 etcd 
+```markdown
+systemctl restart etcd 
+```
+
+3、查看状态
+```markdown
+systemctl status etcd
+```
+
+### 参考资料
 
 1、Github
 
