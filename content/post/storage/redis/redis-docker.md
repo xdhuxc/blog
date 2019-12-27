@@ -15,6 +15,7 @@ categories = [
 本篇博客主要介绍以 docker 容器方式部署 Redis 的操作。
 
 <!--more-->
+
 1、最简单的 Redis 容器启动方式
 ```markdown
 docker run -d --name redis redis:latest 
