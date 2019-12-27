@@ -57,31 +57,43 @@ crontab [-u user] file crontab [-u user] [-e | -l | -r | -i]
 ```markdown
 0 10,17 * * 0-5 command
 ```
+
 2、每小时的第21分钟和第37分钟执行
 ```markdown
 21,37 * * * * command
 ```
+
 3、在上午7点到10点的每小时的第11和第47分钟执行
 ```markdown
 11,47 7-10 * * * command
 ```
+
 4、每晚 10:30 执行
 ```markdown
 30 22 * * * command
 ```
+
 5、每周六、周日的12点30分执行
 ```markdown
 30 12 * * 6,0 command
 ```
+
 6、每隔 60 分钟执行一次
 ```markdown
 */60 * * * * command
 ```
+
 7、整点执行
 ```markdown
 0 * * * * command # 将在每个整点执行 command
 ```
 
+8、每分钟向 `/home/xdhuxc.txt` 中输出 `Hello World`
+```markdown
+crontab -e 
+*/1 * * * * echo "" > /home/xdhuxc.txt
+systemctl restart crond
+```
 
 ### 注意事项
 1、脚本中涉及文件路径时需要绝对路径；

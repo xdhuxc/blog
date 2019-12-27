@@ -17,7 +17,7 @@ categories = [
 ### 清理过大的 cache 内存
 清理过大的cache内存，系统中运行大量容器，cache过大
 <center>
-<img src="/image/linux/cache-1.png" width="800px" height="300px" />
+<img src="/image/linux/common-operations/cache-1.png" width="800px" height="300px" />
 </center>
 
 
@@ -25,7 +25,7 @@ categories = [
 
 1）查看 `/proc/sys/vm/drop_caches` 的值，默认为 `0`
 <center>
-<img src="/image/linux/cache-2.png" width="800px" height="300px" />
+<img src="/image/linux/common-operations/cache-2.png" width="800px" height="300px" />
 </center>
 
 2）执行sync命令
@@ -42,7 +42,7 @@ cat /proc/sys/vm/drop_caches
 ```
 
 <center>
-<img src="/image/linux/cache-3.png" width="800px" height="300px" />
+<img src="/image/linux/common-operations/cache-3.png" width="800px" height="300px" />
 </center>
 
 drop_caches 数值的含义：
@@ -53,7 +53,7 @@ drop_caches 数值的含义：
 ### 挂载磁盘
 1、使用 `fdisk –l`（查看当前系统所有硬盘及分区情况）， 找到待挂载的磁盘。
 <center>
-<img src="/image/linux/disk.png" width="800px" height="300px" />
+<img src="/image/linux/common-operations/disk.png" width="800px" height="300px" />
 </center>
 
 2、创建分区待挂载的目录，例如 `/xdhuxc`，必须是空目录。
@@ -91,7 +91,7 @@ nice 命令可以修改进程的优先级，进而调整进程的调度。nice �
 
 1、执行命令 `sleep 300 &`，然后查看该进程
 <center>
-<img src="/image/linux/nice-1.png" width="800px" height="300px" />
+<img src="/image/linux/common-operations/nice-1.png" width="800px" height="300px" />
 </center>
 
 
@@ -99,21 +99,21 @@ nice 命令可以修改进程的优先级，进而调整进程的调度。nice �
 
 2、执行命令 `nice sleep 300 &`，然后查看该进程
 <center>
-<img src="/image/linux/nice-2.png" width="800px" height="300px" />
+<img src="/image/linux/common-operations/nice-2.png" width="800px" height="300px" />
 </center>
 
 使用 nice 命令后，优先级 NI 的数值为 10，nice 命令将 NI 默认调整为 10，降低了该进程的优先级。
 
 3、执行命令 `nice -n 15 sleep 300 &`，然后查看该进程
 <center>
-<img src="/image/linux/nice-3.png" width="800px" height="300px" />
+<img src="/image/linux/common-operations/nice-3.png" width="800px" height="300px" />
 </center>
 
 在默认值 0 的基础上加 15，非管理员可以将 NI 值调整为 0~19 之间的任意值，降低了进程的优先级。
 
 4、执行命令 `nice -n -15 sleep 300 &`，然后查看该进程
 <center>
-<img src="/image/linux/nice-4.png" width="800px" height="300px" />
+<img src="/image/linux/common-operations/nice-4.png" width="800px" height="300px" />
 </center>
 
 仅管理员可以在默认值的基础上 -n，调高进程的优先级，普通用户无权调高进程优先级。
@@ -127,8 +127,13 @@ renice 命令可以重新调整进程执行的优先级，可以指定群组或�
 使用方法和 nice 相同
 
 <center>
-<img src="/image/linux/renice.png" width="800px" height="300px" />
+<img src="/image/linux/common-operations/renice.png" width="800px" height="300px" />
 </center>
 
 一个紧急进程，需要更多的 CPU 资源时，可以调高运行中的该进程。
+
+### 配置 CentOS 但需要不更新 DNS
+> 配置CentOS不更新DNS，即不刷新/etc/resolv.conf文件
+
+修改配置 `/etc/NetworkManager/NetworkManager.conf`，添加 `dns=none`，修改完成后，使用 `systemctl restart NetworkManager` 命令重启 `NetworkManager`
 

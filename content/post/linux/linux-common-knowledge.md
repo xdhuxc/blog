@@ -63,8 +63,9 @@ ulimit -a 看到的是软限制，可以通过 ulimit -a -H 查看其硬限制�
 
 #### 解除资源限制
 1、解除 Linux 系统的最大进程数和最大文件打开数限制：
+
 在 `/etc/security/limits.conf` 中添加如下行：
-```
+```markdown
 * soft noproc 11000
 * hard noproc 11000
 * soft nofile 4100
@@ -73,8 +74,9 @@ ulimit -a 看到的是软限制，可以通过 ulimit -a -H 查看其硬限制�
 说明：* 代表针对所有用户，`noproc` 是代表最大进程数，`nofile` 是代表最大文件打开数。
 
 2、修改所有Linux用户的环境变量文件：
+
 在`/etc/profile`中添加如下内容
-```
+```markdown
 ulimit -u 10000
 ulimit -n 4096
 ulimit -d unlimited
@@ -86,7 +88,9 @@ ulimit -v unlimited
 保存后运行`source /etc/profile` 使其生效。
 
 #### 参考资料
+
 https://blog.csdn.net/csq_year/article/details/49304895 
+
 https://blog.csdn.net/fengspg/article/details/39646337
 
 ### 僵尸进程和孤儿进程

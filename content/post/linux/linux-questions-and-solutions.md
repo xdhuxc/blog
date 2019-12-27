@@ -85,3 +85,16 @@ yum update -y nss nspr nss-util
 更新后问题得到解决。
 
 仅更新（1）和仅更新（2）都不起作用
+
+6、`CentOS 7` 虚拟机有网卡，没有 `IP` 地址，进入 `/etc/sysconfig/network-scripts` 目录下，修改 `ifcfg-eth0` 文件
+
+<center>
+<img src="/image/linux/questions-and-solutions/WechatIMG622.png" width="800px" height="300px" />
+</center>
+
+将其中的 `ONBOOT` 修改为 `yes`，然后使用 `systemctl restart network` 命令重启网络
+
+注意：启动 `Windows` 下 `VMware` 相关的服务
+
+7、
+

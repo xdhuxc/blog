@@ -21,3 +21,9 @@ categories = [
 calicoctl node status # 查看节点状态 
 ```
 注意，该命令不显示当前节点状态。
+
+2、查看IP池
+```markdown
+calicoctl get ippool -o wide
+```
+

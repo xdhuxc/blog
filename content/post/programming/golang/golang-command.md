@@ -52,6 +52,12 @@ go mod <command> [<arguments>]
 * verify：验证依赖项具有预期的内容。
 * why：解释需要该包或者模块的原因。
 
+4）`env` 用于修改 go 内置的环境变量，不能用于修改其他环境变量
+```markdown
+go env -w GOPRIVATE="gitlab.xdhuxc.com"
+```
+除 `GOPATH` 外，go 内置的环境变量不能使用 `export` 来进行修改
+
 ### 基于 make 编译 go 工程
 1、进入 GOPATH 目录下
 ```markdown
