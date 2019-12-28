@@ -20,7 +20,6 @@ categories = [
 <img src="/image/linux/common-operations/cache-1.png" width="800px" height="300px" />
 </center>
 
-
 /proc是一个虚拟文件系统，可以通过对它的读写操作，做为与kernel实体间进行通信的一种手段。也就是说，可以通过修改/proc中的文件，来对当前kernel的行为做出调整。我们可以通过调整/proc/sys/vm/drop_caches来释放内存。
 
 1）查看 `/proc/sys/vm/drop_caches` 的值，默认为 `0`

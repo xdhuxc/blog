@@ -47,16 +47,60 @@ pstree -a -l 3376
 
 6、时间格式
 
-想要获得 `2018-05-27` 样式
+1）获得 `2018-04-19` 样式
 ```markdown
-data_str=$(date +"%Y-%m-%d")
-echo ${data_str}
+date +"%Y-%m-%d"
+```
+执行效果如下所示：
+```markdown
+[root@localhost ~]# date +"%Y-%m-%d"
+2018-04-19
 ```
 
-想要获得 `20180527` 样式
+2）获得 `20180419` 样式
 ```markdown
-data_str=$(date +"%Y%m%d")
-echo ${data_str}
+date +"%Y%m%d"
+```
+执行效果如下所示：
+```markdown
+[root@localhost ~]# date +"%Y-%m-%d"
+20180419
+```
+
+3）仅包含年月日的日期格式
+```markdown
+date +"%Y-%m-%d" 
+或 
+date -d today +"%Y-%m-%d"
+```
+执行效果如下所示：
+```markdown
+[root@localhost ~]# date +"%Y-%m-%d"
+2018-04-19
+[root@localhost ~]# date -d today +"%Y-%m-%d"
+2018-04-19
+```
+
+4）包含日期和时间的格式
+```markdown
+date +"%Y-%m-%d %H:%M:%S" 
+或 
+date +"%Y-%m-%d %T"
+或
+date -d today +"%Y-%m-%d %T" 
+或
+date -d today +"%Y-%m-%d %H:%M:%S"
+```
+执行效果如下所示：
+```markdown
+[root@localhost ~]# date +"%Y-%m-%d %H:%M:%S"
+2018-04-19 11:39:47
+[root@localhost ~]# date +"%Y-%m-%d %T"
+2018-04-19 11:39:59
+[root@localhost ~]# date -d today +"%Y-%m-%d %T" 
+2018-04-19 11:40:07
+[root@localhost ~]# date -d today +"%Y-%m-%d %H:%M:%S"
+2018-04-19 11:40:16
 ```
 
 7、修改系统时区
@@ -84,3 +128,19 @@ ls -a | xargs rm -r
 ```
 但是不能删除 `.` 和 `..` 目录，所以该命令的返回值为 `1`。
 
+10、字符串替换
+
+1）将当前目录下所有文件中的 `127.0.0.1` 修改为 `172.20.15.29`
+```markdown
+sed -i "s/127.0.0.1/172.20.15.29/g" ./*
+```
+
+2）将当前目录下所有文件中的 `127.0.0.1` 或 `localhost` 修改为 `172.20.15.29`
+```markdown
+sed -i "s/\(127.0.0.1\|localhost\)/172.20.15.29/g" ./*
+```
+
+11、查找当前目录下所有以 `.sh`，`.service`，`.conf`，`.yaml` 结尾的文件
+```markdown
+find ./ -regex '.*\.sh\|.*\.service\|.*\.conf\|.*\.yaml'
+```

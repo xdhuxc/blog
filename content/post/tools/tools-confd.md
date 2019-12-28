@@ -230,7 +230,7 @@ WantedBy=multi-user.target
 * --interval：后台轮询间隔，以秒为单位，默认值为：600；
 * --profile：在使用 DynamoDB 作为数据源时，使用 AWS AccessKey 和 Secret Key 的 profile，防止和其他程序使用的 AccessKey 和 Secret Key 冲突，源代码中没有此选项，此处使用的是改造过的[代码](https://github.com/xdhuxc/confd)；
 * --log-level：confd 日志级别，默认为： info；
-* --watch：启用 watch 功能，当 etcd（或 consul）中的数据发生变化时，会触发 confd 全量同步数据，近实时同步。
+* --watch：启用 watch 功能，当 etcd 或 consul 中的数据发生变化时，会触发 confd 全量同步数据，近实时同步。
 
 添加如下 profile 到 ~/.aws/credentials 文件中
 ```markdown
