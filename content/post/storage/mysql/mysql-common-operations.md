@@ -31,6 +31,11 @@ mysql> show grants for 'xdhuxc'@'%';
 grant select, insert, update, delete on 'user.*' to 'xdhuxc'@'%'
 ```
 
+3、授予所有权限
+```markdown
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'*' IDENTIFIED BY 'Xdhuxc123' WITH GRANT OPTION;
+```
+
 ### 忘记密码修改密码
 
 #### Linux 系统

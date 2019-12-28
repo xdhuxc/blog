@@ -123,8 +123,8 @@ mysqldump -uroot -p xdhuxc > /tmp/xdhuxc.sql，敲回车后，会提示输入密
 或
 mysqldump -uroot xdhuxc > /tmp/xdhuxc.sql，敲回车后，会提示输入密码
 ```
-2、导出数据库表结构
 
+2、导出数据库表结构
 > -d，--no-data，不导出表数据，只导出表结构。
 
 ```markdown
@@ -136,7 +136,6 @@ mysqldump -uroot -d xdhuxc > /tmp/xdhuxc.sql
 ```
 
 3、导出数据库表数据
-
 > -t，--no-create-info，不包含创建表的信息，只导出表数据
 
 ```markdown
@@ -148,7 +147,6 @@ mysqldump -uroot -t xdhuxc > /tmp/xdhuxc.sql
 ```
 
 4、导出指定表的数据或信息
-
 > 参考上面的命令，在数据库名称后面加上表名称即可。
 
 ```markdown

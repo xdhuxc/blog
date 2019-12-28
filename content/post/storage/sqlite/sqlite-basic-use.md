@@ -56,7 +56,7 @@ wanghuans-MBP:~ wanghuan$
 ```
 
 ### 可视化
-可以使用 DBeaver，TablePlus 等可视化工具操作之。
+可以使用 `DBeaver`，`TablePlus` 等可视化工具操作之。
 
 ### 参考资料
 https://www.runoob.com/sqlite/sqlite-create-table.html

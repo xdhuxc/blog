@@ -61,5 +61,25 @@ public void init(ServletConfig config) throws ServletException {
 }
 ```
 
+### web.xml is missing and <failOnMissingWebXml> is set to true
+使用 `maven` 构建工程时，`pom.xml` 报错如下，提示如下：
+```markdown
+web.xml is missing and <failOnMissingWebXml> is set to true
+```
+在 `pom.xml` 文件中添加如下内容：
+```markdown
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
 
 
