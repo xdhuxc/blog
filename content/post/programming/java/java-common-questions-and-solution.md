@@ -82,4 +82,54 @@ web.xml is missing and <failOnMissingWebXml> is set to true
 </build>
 ```
 
+### SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+运行程序时，报错如下：
+```markdown
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+```
+原因：`log4j` 和 `sl4j` 的版本不匹配，或是缺少 `jar` 包，使用下面这组：
+```markdown
+<slf4j-log4j12.version>1.7.25</slf4j-log4j12.version>
+<slf4j-api.version>1.7.25</slf4j-api.version>
+<log4j.version>1.2.17</log4j.version>
+<slf4j-nop.version>1.7.25</slf4j-nop.version>
+<slf4j-simple.version>1.7.5</slf4j-simple.version>
 
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-log4j12</artifactId>
+    <version>${slf4j-log4j12.version}</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>${log4j.version}</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>${slf4j-api.version}</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-nop</artifactId>
+    <version>${slf4j-nop.version}</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>${slf4j-simple.version}</version>
+</dependency>
+```
