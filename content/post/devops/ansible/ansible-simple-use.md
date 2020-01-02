@@ -5,13 +5,17 @@ date = "2018-05-14"
 lastmod = "2018-05-14"
 description = ""
 tags = [
-    "ansible",
+    "Ansible",
     "DevOps"
 ]
 categories = [
     "技术"
 ]
 +++
+
+本篇博客介绍了 Ansible 的特点，和 SaltStack 的对比及其原理。
+
+<!--more-->
 
 ### Ansible 简介
 Ansible 是一种集成IT系统的配置管理、应用部署、执行特定任务的运维工具。
@@ -131,3 +135,31 @@ and check to make sure that only the key(s) you wanted were added.
 * -f：指定并发数。
 * -s：连接用户不是 root，但是需要 root 权限时使用。
 * -K：使用 -s 选项时，-K 指定输入 root 用户密码。
+
+### ansible 原理
+
+ansible 的命令执行过程：
+
+1、加载配置文件，默认为：`/etc/ansible/ansible.cfg`。
+
+2、匹配主机清单
+
+3、加载指令对应的模块文件，如command，生成.py的文件到本机的临时目录，这个目录就是在 `/etc/ansible/ansible.cfg` 定义的
+
+4、通过 `ansible` 将模块或命令生成对应的临时py文件，并将该文件传输至远程服务器的对应执行用户 `$HOME/.ansible/tmp/ansible-tmp-数字/XXX.PY` 文件，这个目录就是在 `/etc/ansible/ansible.cfg` 定义的
+    
+5、给文件+x 权限
+
+6、执行并返回结果
+
+7、删除临时py文件，sleep 0退出
+
+8、断开远程主机连接
+
+### 参考资料
+
+官方文档 https://docs.ansible.com/ansible/latest/index.html
+
+中文文档 http://www.ansible.com.cn/
+
+调用ansible API 示例 https://blog.csdn.net/python_tty/article/details/73822071

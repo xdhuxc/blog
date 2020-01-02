@@ -5,13 +5,17 @@ date = "2018-05-02"
 lastmod = "2018-05-02"
 description = ""
 tags = [
-    "ansible",
+    "Ansible",
     "DevOps"
 ]
 categories = [
     "技术"
 ]
 +++
+
+本篇博客详细介绍了 Ansible 常用模块的用法。
+
+<!--more-->
 
 ### 模块相关命令
 （1）列出 ansible 支持的模块
