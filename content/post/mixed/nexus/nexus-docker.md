@@ -15,8 +15,6 @@ categories = [
 
 <!--more-->
 
-http://blog.csdn.net/liumiaocn/article/details/62050525
-
 ### Nexus 2
 1、拉取Nexus镜像
 ```markdown
