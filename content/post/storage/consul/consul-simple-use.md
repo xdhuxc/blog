@@ -10,7 +10,7 @@ categories = [
 ]
 +++
 
-
+本篇博客介绍了 consul 的部署及配置和基本使用。
 
 <!--more-->
 
@@ -51,19 +51,26 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/consul agent -dev
+ExecStart=/usr/bin/consul agent -dev -client 0.0.0.0 -ui
 
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 ```
+agent 启动参数说明：
+
+* -dev：以开发环境模式运行，这种模式下 consul节点既是 client，也是 server
+* -client：指定客户端访问的地址，客户端通过 RPC，DNS，HTTP，gRPC 访问都需要用这个地址，可以指定其为：0.0.0.0 绑定所有客户端地址
+* -ui：启动内置的 UI Web 服务
+* -bind：指定 consul 集群节点之间通信的地址
+* -data-dir：指定 consul 节点存放数据的目录
+* -bootstrap-expect：指定期望的 server 节点数量
 
 3）启动 consul
 ```markdown
 systemctl daemon-reload && systemctl restart consul
 ```
-
 
 ### 读写数据
 1）添加或更新数据
@@ -97,10 +104,8 @@ consul members
 consul leave
 ```
 
-
-
-
-
 ### 参考资料
 
 官方安装指南 https://www.consul.io/docs/install/index.html
+
+https://www.jianshu.com/p/f4e2b2aabd21
