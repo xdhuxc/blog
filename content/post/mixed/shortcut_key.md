@@ -96,3 +96,19 @@ command + x | 删除当前行
 command + F | 查找
 command + ⌥ + F | 查找并替换
 
+### Notepad++
+快捷键 | 功能
+---|---
+Ctrl + L | 删除光标所在行
+Ctrl + D | 复制当前行到下一行
+
+### Eclipse 快捷键
+功能 | 快捷键
+---|---
+导入相应的包 | Ctrl+ Shift + O
+在当前行插入空行 | Ctrl + Shif +Enter
+
+### MindMaster
+1、在 Topic 内换行，在光标所在位置，按 `Shift+Enter` 键
+
+
