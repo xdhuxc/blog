@@ -80,7 +80,6 @@ calico 节点组网可以直接利用数据中心的网络结构（无论是L2�
 
 3）流量隔离基于iptables实现，并且从etcd中获取需要生成的隔离规则，有一些性能上的隐患。
 
-
 ### 注意事项
 1、部署 calcio workload 的各节点机的 hostname 最好全部不同，否则会导致写入 etcd 的数据发生覆盖，但是可以通过在启动 calcio node 时，指明 calico node 的名称来避免。
 

@@ -116,3 +116,74 @@ POST index_name/document_type -T abc.json
 PUT index_name/document_type/document_id -T abc.json
 ```
 
+3、ElasticSearch启动时报错，错误如下：
+```markdown
+[2017-06-20T09:57:45,307][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [node-1] uncaught exception in thread [main]
+org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root
+```
+出于安全考虑，ElasticSearch不让使用root用户启动，解决方法：
+
+1）在启动命令中加入参数，在使用命令行启动ElasticSearch时，加入额外的参数启动，如下所示：
+```markdown
+/bin/elasticsearch -Des.insecure.allow.root=true
+```
+
+2）创建新用户，以新用户身份启动之
+```markdown
+groupadd -g 700 elasticsearch                                                       # 创建elasticsearch用户组
+useradd -u 701 -g 700 elasticsearch                                                 # 创建用户elasticsearch
+passwd elasticsearch                                                                # 为用户elasticsearch设置密码
+gpasswd -a elasticsearch elasticsearch                                              # 将用户elasticsearch添加到用户组elasticsearch中，第一个参数表示用户名，第二个参数表示用户组名
+chown -R elasticsearch:elasticsearch /middleware/elasticsearch-2.4.1 # 为用户组elasticsearch和用户elasticsearch赋予权限
+```
+
+4、Elasticsearch 启动时报错，错误如下：
+```markdown
+[2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+```
+执行如下命令解决：
+```markdown
+sysctl -w vm.max_map_count=262144
+```
+或者
+```markdown
+echo "vm.max_map_count=262144" >> /etc/sysctl.conf
+sysctl -p
+```
+
+5、ElasticSearch 启动后，使用 `curl http://localhost:9200` 访问，控制台有内容输出，但是 `curl http://ip_address:9200` 控制台无内容输出，在浏览器中使用 `http://ip_address:9200` 也无法访问。
+
+修改 `elasticsearch.yml` 文件，修改 `network.host` 的值为：`0.0.0.0`，然后重新启动之，外网即可进行访问.
+
+6、elasticsearch状态为红色，原因为磁盘不足，腾出磁盘空间后，还是红色，执行如下命令：
+
+Elasticsearch 提供了专门的 `reroute API` 用于手工进行 `shard` 的移动、分配以及取消指令
+```markdown
+POST /_cluster/reroute
+{
+  "commands": [
+    {
+      "move": {
+        "index": "xdhuxc-basedoc-ta_mysql-a0f921217f6d4a6aa348415411db6f7e",
+        "shard": 0,
+        "from_node": "singlenode",
+        "to_node": "singlenode"
+      }
+    }
+  ]
+}
+POST /_cluster/reroute
+{
+  "commands": [
+    {
+      "allocate": {
+        "index": "xdhuxc-basedoc-ta_mysql-a0f921217f6d4a6aa348415411db6f7e",
+        "shard": 0,
+        "node": "singlenode",
+        "allow_primary":true
+      }
+    }
+  ]
+}
+```
+

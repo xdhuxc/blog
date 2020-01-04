@@ -58,8 +58,99 @@ systemctl restart etcd
 systemctl status etcd
 ```
 
+### 集群方式部署 etcd
+
+三台机器的基本信息
+
+名称 | IP地址 | 主机名 | OS | etcd_version
+---|---|---|---|---
+etcd0 | 192.168.91.128 | etcd0.xdhuxc.com | CentOS 7.3.1611 | etcd-v3.2.10
+etcd1 | 192.168.91.129 | etcd1.xdhuxc.com | CentOS 7.3.1611 | etcd-v3.2.10
+etcd2 | 192.168.91.130 | etcd2.xdhuxc.com | CentOS 7.3.1611 | etcd-v3.2.10
+
+均安装 iptables 并开放所需端口2379，2380
+
+在每一台机器上，添加如下环境变量
+```markdown
+ETCD_VERSION=v3.3
+TOKEN=etcd-cluster-token
+CLUSTER_STATE=new
+NODE_1=etcd-node-0
+NODE_2=etcd-node-1
+NODE_3=etcd-node-2
+HOST_1_IP=192.168.91.128
+HOST_2_IP=192.168.91.129
+HOST_3_IP=192.168.91.130
+CLUSTER=${NODE_1}=http://${HOST_1_IP}:2380,${NODE_2}=http://${HOST_2_IP}:2380,${NODE_3}=http://${HOST_3_IP}:2380
+DATA_DIR=/home/xdhuxc/etcd/data
+```
+在节点1上，执行如下命令
+
+添加如下环境变量：
+```markdown
+THIS_NAME=${NODE_1}
+THIS_IP=${HOST_1_IP}
+```
+启动容器
+```markdown
+docker run \
+    -p 2379:2379 \
+    -p 2380:2380 \
+    -v ${DATA_DIR}:/etcd-data \
+    --name etcd-1
+    quay.io/coreos/etcd:v3.3 \
+    /usr/local/bin/etcd \
+    --data-dir=/etcd-data \
+    --name ${THIS_NAME} \
+    --initial-advertise-peer-urls http://${THIS_IP}
+```
+
+在节点2上，执行如下命令
+
+添加如下环境变量：
+```markdown
+THIS_NAME=${NODE_2}
+THIS_IP=${HOST_2_IP}
+```
+启动容器
+```markdown
+docker run \
+    -p 2379:2379 \
+    -p 2380:2380 \
+    -v ${DATA_DIR}:/etcd-data \
+    --name etcd-2
+    quay.io/coreos/etcd:v3.3 \
+    /usr/local/bin/etcd \
+    --data-dir=/etcd-data \
+    --name ${THIS_NAME} \
+    --initial-advertise-peer-urls http://${THIS_IP}
+```
+
+在节点3上，执行如下命令
+
+添加如下环境变量：
+```markdown
+THIS_NAME=${NODE_3}
+THIS_IP=${HOST_3_IP}
+```
+启动容器
+```markdown
+docker run \
+    -p 2379:2379 \
+    -p 2380:2380 \
+    -v ${DATA_DIR}:/etcd-data \
+    --name etcd-3
+    quay.io/coreos/etcd:v3.3 \
+    /usr/local/bin/etcd \
+    --data-dir=/etcd-data \
+    --name ${THIS_NAME} \
+    --initial-advertise-peer-urls http://${THIS_IP}
+```
+
 ### 参考资料
 
-1、Github
+Github https://github.com/etcd-io/etcd/releases
 
-https://github.com/etcd-io/etcd/releases
+镜像下载地址 https://quay.io/repository/coreos/etcd?tag=latest&tab=tags
+
+镜像使用地址 https://github.com/coreos/etcd/blob/master/Documentation/op-guide/container.md#docker
