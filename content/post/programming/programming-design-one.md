@@ -85,6 +85,9 @@ categories = [
 
 5、`Deployment`，`Service`，`ConfigMap` 等资源定期落库。
 
+#### 2020年01月08日
+
+1、基于 AlertManager 的报警数据落库问题，为后续统计数据和优化提供数据支撑。
 
 ### 诡异问题记录
 
