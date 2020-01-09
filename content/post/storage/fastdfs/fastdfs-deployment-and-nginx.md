@@ -116,7 +116,7 @@ http.server_port=6666
 cp /usr/local/src/fastdfs/conf/systemd/fdfs_trackerd.service /usr/lib/systemd/system/
 ```
 
-因为 fdfs_trackerd 等命令在 `/usr/local/bin` 中并没有，而是在 `/usr/bin` 路径下：
+因为 `fdfs_trackerd` 等命令在 `/usr/local/bin` 中并没有，而是在 `/usr/bin` 路径下：
 ```markdown
 ln -s /usr/bin/fdfs_trackerd /usr/local/bin
 ln -s /usr/bin/stop.sh /usr/local/bin
@@ -138,15 +138,15 @@ systemctl restart fdfs_trackerd
 systemctl enable fdfs_trackerd
 ```
 
-6、配置storage服务器（172.20.15.75）
+6、配置 `storage` 服务器（172.20.15.75）
 
-首先是创建Storage服务器的文件目录，需要注意的是多建了一个目录，因为Storage还需要一个文件存储路径，用于存放接收的文件：
+首先是创建 `storage` 服务器的文件目录，需要注意的是多建了一个目录，因为 `storage` 还需要一个文件存储路径，用于存放接收的文件：
 ```markdown
 mkdir -p /data/fastdfs/storage
 mkdir -p /data/fastdfs/storage_data
 ```
 
-修改 storage 的配置文件 `/etc/fdfs/storage.conf`，修改如下部分：
+修改 `storage` 的配置文件 `/etc/fdfs/storage.conf`，修改如下部分：
 ```markdown
 disabled=false
 group_name=group1
@@ -158,22 +158,22 @@ tracker_server=172.20.15.73:22122
 http.server_port=8888
 ```
 
-拷贝 tracker 的 systemd 文件至 `/usr/lib/systemd/system/`：
+拷贝 `tracker` 的 `systemd` 文件至 `/usr/lib/systemd/system/`：
 ```markdown
 cp /usr/local/src/fastdfs/conf/systemd/fdfs_storaged.service /usr/lib/systemd/system/
 ```
 
-配置完成后同样要为 Storage 服务器的启动脚本设置软引用：
+配置完成后同样要为 `storage` 服务器的启动脚本设置软引用：
 ```markdown
 ln -s /usr/bin/fdfs_storaged /usr/local/bin
 ```
 
-重启 systemd：
+重启 `systemd`：
 ```markdown
 systemctl daemon-reload
 ```
 
-启动tracker：
+启动 `tracker`：
 ```markdown
 systemctl restart fdfs_storaged
 ```
@@ -183,26 +183,26 @@ systemctl restart fdfs_storaged
 systemctl enable fdfs_storaged
 ```
 
-查看 storage 服务器是否已经登记到 tracker 服务器（也可以理解为 tracker 与 storage 是否整合成功），运行以下命令：
+查看 `storage` 服务器是否已经登记到 `tracker` 服务器（也可以理解为 `tracker` 与 `storage` 是否整合成功），运行以下命令：
 ```markdown
 /usr/bin/fdfs_monitor /etc/fdfs/storage.conf
 ```
 
 看到 `tracker server is 172.20.15.73:22122`，tracker 服务器正常启动。
 
-看到 `172.20.15.75 ACTIVE` 字样即可说明 storage 服务器已经成功注册到了 tracker 服务器。
+看到 `172.20.15.75 ACTIVE` 字样即可说明 `storage` 服务器已经成功注册到了 `tracker` 服务器。
 
 ### 安装并配置 Nginx
 
 #### 安装配置 tracker 的 nginx
 
-安装 nginx 依赖包，并安装 nginx：
+安装 `nginx` 依赖包，并安装 `nginx`：
 ```markdown
 rpm -ivh --force /usr/local/src/fastdfs/nginx/nginx-lib/*
 rpm -ivh --force /usr/local/src/fastdfs/nginx/nginx-rpm/*
 ```
 
-将tracker的nginx的配置文件拷贝到 `/etc/nginx`，端口为 `9988`：
+将 `tracker` 的 `nginx` 的配置文件拷贝到 `/etc/nginx`，端口为 `9988`：
 ```markdown
 cp -r /usr/local/src/fastdfs/conf/nginx-tracker.conf /etc/nginx/nginx.conf
 ```
@@ -218,17 +218,17 @@ cp -r /usr/local/src/fastdfs/fastdfs-5.11/conf/mime.types /etc/fdfs/
 mkdir -p /var/lib/nginx/tmp /data/log/nginx
 ```
 
-拷贝 nginx 的 systemd 文件至 `/usr/lib/systemd/system/`：
+拷贝 `nginx` 的 `systemd` 文件至 `/usr/lib/systemd/system/`：
 ```markdown
 cp /usr/local/src/fastdfs/conf/systemd/nginx.service /usr/lib/systemd/system/
 ```
 
-重启 systemd：
+重启 `systemd`：
 ```markdown
 systemctl daemon-reload
 ```
 
-启动 nginx：
+启动 `nginx`：
 ```markdown
 systemctl start nginx
 ```
@@ -240,7 +240,7 @@ systemctl enable nginx
 
 #### 安装并配置 storage 的 nginx
 
-安装nginx依赖包：
+安装 `nginx` 依赖包：
 ```markdown
 rpm -ivh --force /usr/local/src/fastdfs/nginx/nginx-lib/*
 ```
@@ -267,7 +267,7 @@ else
 fi
 ```
 
-增加依赖包并安装 nginx：
+增加依赖包并安装 `nginx`：
 ```markdown
 cd /usr/local/src/fastdfs/nginx/nginx-1.12.2
 
@@ -276,7 +276,7 @@ cd /usr/local/src/fastdfs/nginx/nginx-1.12.2
 make && make install
 ```
 
-将 nginx 的配置文件拷贝到 `/etc/nginx`，端口为 `9999`：
+将 `nginx` 的配置文件拷贝到 `/etc/nginx`，端口为 `9999`：
 ```markdown
 cp -r /usr/local/src/fastdfs/conf/nginx-storage.conf /etc/nginx/nginx.conf
 ```
@@ -320,7 +320,7 @@ store_path_count=1
 store_path0=/data/fastdfs/storage_data
 ```
 
-建立 M00 至存储目录的符号连接：
+建立 `M00` 至存储目录的符号连接：
 ```markdown
 ln -s /data/fastdfs/storage_data/data /data/fastdfs/storage_data/data/M00
 ```
