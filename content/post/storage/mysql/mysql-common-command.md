@@ -153,3 +153,41 @@ mysqldump -uroot -t xdhuxc > /tmp/xdhuxc.sql
 mysqldump -uroot -pAdmin369  -t xdhuxc users > /tmp/xdhuxc_users.sql
 ```
 
+### 数据导入命令
+
+1、在命令行 `mysql> ` 中使用命令：
+```markdown
+source mysql_script_path
+```
+
+2、将sql脚本导入MySQL数据库
+
+1）创建一个空数据库，使用命令为：
+```markdown
+create database xdhuxc
+```
+
+2）将表结构和数据导入数据库
+
+方式一：使用 `source` 命令
+
+```markdown
+use database_name             # 选择数据库
+set names utf8                # 设置数据库编码
+source /tmp/database_name.sql # 导入数据库表结构和数据
+```
+
+方式二：直接使用命令实现，使用命令为：
+
+> 使用–default-character-set = utf8指定编码以避免出现乱码。
+
+```markdown
+mysql -u user_name -p password database_name < /tmp/database_name.sql –default-character-set = utf8
+```
+
+
+
+
+
+
+

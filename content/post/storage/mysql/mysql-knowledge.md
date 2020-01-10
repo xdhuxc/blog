@@ -14,7 +14,6 @@ categories = [
 
 <!--more-->
 
-
 ### MySQL 主机 127.0.0.1 与 localhost 的区别
 
 1、`mysql -h 127.0.0.1` 的时候，使用 `TCP/IP` 连接，`mysql` 服务器认为该连接来自于 `127.0.0.1` 或者是 `localhost.localdomain`

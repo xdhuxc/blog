@@ -35,6 +35,7 @@ grant select, insert, update, delete on 'user.*' to 'xdhuxc'@'%'
 ```markdown
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'*' IDENTIFIED BY 'Xdhuxc123' WITH GRANT OPTION;
 ```
+通过此命令也可以修改 MySQL 用户的密码
 
 ### 忘记密码修改密码
 
@@ -65,7 +66,7 @@ mysql> quit
 5、注释掉 skip-grant-tables，重启 mysqld 服务。
 
 #### Windows 系统
-1、关闭MySQL服务
+1、关闭 MySQL 服务
 ```markdown
 net stop mysql57
 ```
@@ -79,7 +80,7 @@ mysqld --default-file="E:\Work\MySQL\MySQL Server 5.7 Data\my.ini" --console --s
 * --default-file：启动 MySQL 服务时的配置文件；
 * --skip-grant-tables：启动 MySQL 服务的时候跳过权限表认证；
 
-3、新打开DOS窗口，进入MySQL的bin目录下，执行如下命令：
+3、新打开 DOS 窗口，进入 MySQL 的 bin 目录下，执行如下命令：
 ```markdown
 mysql -uroot -p # 回车后，让输入密码，直接回车
 ```
