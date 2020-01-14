@@ -13,6 +13,7 @@ categories = [
 +++
 
 当我们需要在网页页面中输入不同编程语言代码并高亮显示时，可以使用 CodeMirror 来实现这种需求。
+
 <!--more-->    
     
 ### CodeMirror 简介
