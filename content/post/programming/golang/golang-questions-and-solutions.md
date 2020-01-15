@@ -32,9 +32,9 @@ RUN apk update \
 ### make build 报错
 1）使用 `make build` 进行构建时，报错如下：
 ```markdown
-wanghuans-MacBook-Pro:scmp-transform wanghuan$ make build
+wanghuans-MacBook-Pro:xdhuxc-transform wanghuan$ make build
 >> go build ...
-build command-line-arguments: cannot load gitlab.xdhuxc.me/sgt/devops/scmp-transform/src/apis: git ls-remote -q ssh://git@gitlab.xdhuxc.me/sgt/devops.git in /Users/wanghuan/GolandProjects/GoPath/pkg/mod/cache/vcs/32878bb63a0c857fed210744986dde9a48418788fe89eee3f24d5b73f5abcd2a: exit status 128:
+build command-line-arguments: cannot load gitlab.xdhuxc.com/xdhuxc/xdhuxc-transform/src/apis: git ls-remote -q ssh://git@gitlab.xdhuxc.com/xdhuxc.git in /Users/wanghuan/GolandProjects/GoPath/pkg/mod/cache/vcs/32878bb63a0c857fed210744986dde9a48418788fe89eee3f24d5b73f5abcd2a: exit status 128:
         GitLab: The project you were looking for could not be found.
         fatal: Could not read from remote repository.
         
@@ -49,11 +49,11 @@ make: *** [build] Error 1
 wanghuans-MacBook-Pro:hawkeye wanghuan$ make build
 >> go build ...
 # gitlab.ushareit.org/SGT/DevOps/hawkeye/src/apis
-src/apis/base.go:55:38: cannot use req (type *"gitlab.ushareit.org/SGT/DevOps/hawkeye/vendor/github.com/emicklei/go-restful".Request) as type *"github.com/emicklei/go-restful".Request in argument to b.auth.GetCustomValue
-src/apis/router.go:54:46: cannot use baseController.auth.Auth (type func(*"github.com/emicklei/go-restful".Request, *"github.com/emicklei/go-restful".Response, *"github.com/emicklei/go-restful".FilterChain)) as type "gitlab.ushareit.org/SGT/DevOps/hawkeye/vendor/github.com/emicklei/go-restful".FilterFunction in argument to baseController.ws.Filter
+src/apis/base.go:55:38: cannot use req (type *"gitlab.xdhuxc.com/xdhuxc/hawkeye/vendor/github.com/emicklei/go-restful".Request) as type *"github.com/emicklei/go-restful".Request in argument to b.auth.GetCustomValue
+src/apis/router.go:54:46: cannot use baseController.auth.Auth (type func(*"github.com/emicklei/go-restful".Request, *"github.com/emicklei/go-restful".Response, *"github.com/emicklei/go-restful".FilterChain)) as type "gitlab.xdhuxc.com/xdhuxc/hawkeye/vendor/github.com/emicklei/go-restful".FilterFunction in argument to baseController.ws.Filter
 make: *** [build] Error 2
 ```
-解决：删除本地项目中 `gitlab.ushareit.org/SGT/DevOps/hawkeye/vendor/github.com/emicklei/go-restful` 目录，重新编译。
+解决：删除本地项目中 `gitlab.xdhuxc.com/xdhuxc/hawkeye/vendor/github.com/emicklei/go-restful` 目录，重新编译。
 
 ### 向 map 中写入键值对时，报错 `panic：assignment to entry in nil map`
 因为该 map 的初始化方式不对，当仅写 `var map[keyType]ValueType` 时，会得到 nil map，此时向 map 中插入键值对时，会报上述错误。

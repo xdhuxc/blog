@@ -1,5 +1,5 @@
 +++
-title = "Golang 常用命令"
+title = "Golang 常用命令和操作总结"
 date = "2019-04-29"
 lastmod = "2019-08-29"
 tags = [
@@ -115,7 +115,24 @@ golang 环境变量
 无法访问默认代理和校验数据库（例如，由于防火墙或沙河配置）的用户，可以通过将 GOPROXY 设置为 direct 和（或）将 GOSUMDB 设置为 off 来禁止其使用。
 
 
+### 引用本地 gitlab 中的包
 
+在最开始搭建项目的时候，将公司内部的一些公用包放到了 github 上，项目中引用 github 上的公共包，现在需要改造为引用公司内部 gitlab 上的。
+
+经过一番探索，总结出步骤如下：
+
+1、修改 `go` 环境变量：`go env -w GOPRIVATE="gitlab.ushareit.me"`（`GOPRIVATE` 指定不可公开获取的模块的路径）
+
+2、在代码中使用 `gitlab.xdhuxc.com/xdhuxc/xdhuxc-common` 全文替换 `github.com/xdhuxc/xdhuxc-common`
+
+3、删除 `go.mod` 文件，重新生成之，依次执行
+```markdown
+go mod init
+go mod tidy
+go mod vendor
+```
+
+4、使用 `make build` 命令进行测试
 
 
 

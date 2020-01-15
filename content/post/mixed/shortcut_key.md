@@ -111,4 +111,7 @@ Ctrl + D | 复制当前行到下一行
 ### MindMaster
 1、在 Topic 内换行，在光标所在位置，按 `Shift+Enter` 键
 
+### 字体
 
+字体：Monaco 
+大小：12
