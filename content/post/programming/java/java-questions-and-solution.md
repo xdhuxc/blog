@@ -133,3 +133,13 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
     <version>${slf4j-simple.version}</version>
 </dependency>
 ```
+
+### Caused by: java.nio.charset.MalformedInputException: Input length = 1
+
+程序运行时，报错如下：
+```markdown
+Caused by: java.nio.charset.MalformedInputException: Input length = 1
+```
+原因：当输入字节序列对于给定 `charset` 来说是不合法的，或者输入字符序列不是合法的 `16` 位 `Unicode` 序列时，抛出此经过检查的异常。
+
+解决：将当前配置文件的编码设置为 `UTF-8`。

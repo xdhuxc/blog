@@ -29,6 +29,20 @@ docker logs nginx/980cfa7fa636 2>&1 | grep '^User:'|tail -n1
 # Docker容器启动时的root用户的密码是随机分配的。所以，通过这种方式就可以得到redmine容器的root用户的密码了
 ```
 
+3、获取容器状态
+```markdown
+docker inspect --format='{{.State.Status}}' ffbb1145d1d7/nginx
+```
+
+4、获取容器的内部IP地址
+```markdown
+docker inspect --format='{{.NetworkSettins.IPAddress}}' ba24b244e370/redis
+```
+
+docker images 默认隐藏了中间状态的镜像，可以使用 docker images -a 命令来查看中间状态的镜像。
+
+docker history 命令可以查看该镜像中每一层的信息。
+
 ### 常用组合命令
 1、删除所有 docker 镜像
 ```markdown

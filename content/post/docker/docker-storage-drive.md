@@ -56,7 +56,7 @@ OverlayFS将一个Linux主机中的两个目录组合起来，一个在上，一
 
 OverlayFS 仅有两层，也就是说镜像中的每一层并不对应 OverlayFS中的层，而是镜像中的每一层对应 `/var/lib/docker/overlay` 中的一个目录，目录以该层的UUID命名。然后使用硬链接将下面层的文件引用到上层。这在一定程度上节省了磁盘空间。这样，OverlayFS中的lowerdir就对应镜像层的最上层，并且是只读的。在创建容器时，docker会新建一个目录作为OverlayFS的upperdir，它是可写的。
 
-OverlayFS中容器的读写操作
+OverlayFS 中容器的读写操作
 
 读：
 

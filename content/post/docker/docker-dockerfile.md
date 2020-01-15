@@ -209,6 +209,94 @@ ONBUILD [INSTRUCTION]
 
 使用 `ONBUILD` 指令的镜像，推荐在标签中注明，例如 `ruby:1.9-onbuild`。
 
+### 主要指令
+
+#### ADD 和 COPY
+
+ADD：将主机上的文件复制到或者将网络上的文件下载到容器中的指定目录。
+
+COPY： 将本地目录中的文件复制到容器内的指定目录下面，从而在镜像中增加一个层。在未指定绝对路径的时候，会放到 WORKDIR 目录下面。
+
+ADD 和 COPY 之间的区别：
+
+* ADD 多了两个功能，下载 URL 和对支持的压缩格式的包进行解压，其他都一样。比如，`ADD http://foo.com/bar.go /tmp/main.go` 会将文件从互联网上下载下来；`ADD /foo.tar.gz /tmp/` 会将压缩文件解压再 COPY 过去。
+* 如果不希望压缩文件复制到容器中后解压的话，那么使用 COPY。
+* 如果需要自动下载 URL 并复制到容器的话，那么使用 ADD。
+
+#### EXPOSE 和 docker run -p 之间的关系
+
+容器的端口必须被发布（publish）出来后才能被外界使用，Dockerfile 中的 EXPOSE 只是 `标记` 某个端口会被暴露出来，只有在使用了 `docker run -p` 或者 `docker run -P` 后，端口才会被 `发布` 出来，此时端口才能被使用。
+
+在 Dockerfile 中没有指定 EXPOSE port 时，
+
+使用 `-P` 参数，执行 `docker run -d --name no-exposed-port-xdhuxc -P xdhuxc:latest`，此时没有任何端口被发布，说明 docker 在使用了 `-P` 参数的情形下只是自动将 EXPOSE 的端口发布出来。
+
+使用 `-p` 加上一个不存在的端口，执行 `docker run -d --name no-exposed-port-xdhuxc -p 8888:9999 xdhuxc:latest`，此时，9999 端口会被暴露，但是没法使用，说明 `-p` 会将没有暴露的端口自动暴露出来。
+
+由此可见，
+
+* `EXPOSE` 或者 `--expose` 只是为其他命令提供所需信息的元数据，或者只是告诉容器操作人员有哪些已知选择，只是作为记录机制，也就是告诉用户哪些端口会提供服务。它保存在容器的元数据中。
+* 使用 `-p` 发布特定端口，如果该端口已经被暴露出来，则发布它；如果它还没有被暴露，则它会被暴露和发布。docker 不会检查容器端口的正确性。
+* 使用 `-P` 时，docker 会自动将所有已经被暴露的端口发布出来。
+
+#### CMD 和 ENTRYPOINT
+
+这两个指令都指定了运行容器时所执行的命令。以下是它们共存的一些规则：
+
+* Dockerfile 至少需要指定一个 CMD 或者 ENTRYPOINT 指令。
+* CMD 可以用来指定 ENTRYPOINT 指令的参数
+
+以下是两者共存时，实际执行命令的格式
+
+ CMD/ENTRYPOINT  | 没有 ENTRYPOINT | ENTRYPOINT entry_exec entry_p1 | ENTRYPOINT ["entry_exec", "entry_p1"]
+---|---|---|---|---
+没有 CMD | 错误，不允许 | /bin/sh -c entry_exec entry_p1 | entry_exec entry_p1
+CMD ["cmd_exec", "cmd_p1"] | cmd_exec cmd_p1 | /bin/sh -c entry_exec entry_p1 cmd_exec cmd_p1 | entry_exec entry_p1 cmd_exec cmd_p1
+CMD ["cmd_p1", "cmd_p2"] | cmd_p1 cmd_p2 | /bin/sh -c entry_exec entry_p1 cmd_p1 cmd_p2 | entry_exec entry_p1 cmd_p1 cmd_p2
+CMD cmd_exec cmd_p1 | /bin/sh -c cmd_exec cmd_p1 | /bin/sh -c entry_exec entry_p1 cmd_exec cmd_p1 | entry_exec entry_p1 cmd_exec cmd_p1
+备注 | 只有 CMD 时，执行 CMD 定义的指令 | CMD 和 ENTRYPOINT 都存在时，CMD 的指令作为 ENTRYPOINT 的参数。
+
+### 构建 Docker 镜像应该遵循的原则
+
+整体原则上，尽量保持镜像功能的明确和内容的精简
+
+要点包括：
+
+1、尽量选取满足需求但较小的基础系统镜像；
+
+2、清理编译生成文件、安装包的缓存等临时文件；
+
+3、安装各个软件的时候要指定准确的版本号，并避免引入不需要的依赖；
+
+4、从安全角度考虑，应用要尽量使用系统的库和依赖；
+
+5、如果安装应用时需要配置一些特殊的环境变量，在安装后要还原不需要保持的变量值；
+
+6、使用Dockerfile创建镜像时，要添加 `.dockerignore` 文件或使用空的工作目录；
+
+### 使用容器时需要避免的一些做法
+
+1、不要在容器中保存数据。
+
+2、将应用打包到镜像再部署，而不是更新到已有容器。
+
+3、不要产生过大的镜像。
+
+4、不要使用单层镜像。
+
+5、不要从运行着的容器上产生镜像。
+
+6、不要只是使用 `latest` 标签。
+
+7、不要在容器内运行超过一个的进程。
+
+8、不要在容器内保存 `credentials`，而是要从外部通过环境变量传入。
+
+9、不要使用 `root` 用户运行容器进程。
+
+10、不要依赖于 IP 地址，而是要从外部通过环境变量传入。
+
+
 
 
 
