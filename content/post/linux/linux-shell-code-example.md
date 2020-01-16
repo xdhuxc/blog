@@ -246,3 +246,16 @@ if [ $(command -v expect) ] ; then
     done
 fi 
 ```
+
+### 获取当前脚本的路径
+```markdown
+current_path=$(cd "$(dirname "$0")"; pwd)
+full_path=$(realpath $0)
+```
+执行结果为：
+```
+/xdhuxc/script/tools
+/xdhuxc/script/tools/test.sh
+```
+
+

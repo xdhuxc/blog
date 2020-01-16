@@ -136,3 +136,50 @@ renice 命令可以重新调整进程执行的优先级，可以指定群组或�
 
 修改配置 `/etc/NetworkManager/NetworkManager.conf`，添加 `dns=none`，修改完成后，使用 `systemctl restart NetworkManager` 命令重启 `NetworkManager`
 
+### 升级 Linux 内核
+
+1、导入ELRepo
+```markdown
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org (external link)
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm (external link)
+```
+
+2、列出可用的内核软件包
+```markdown
+[root@wanghuan-private-test-5 yum.repos.d]# yum --disablerepo="*" --enablerepo="elrepo-kernel" list available
+Loaded plugins: fastestmirror
+elrepo-kernel                                                                                                                                   | 2.9 kB  00:00:00     
+elrepo-kernel/primary_db                                                                                                                        | 1.8 MB  00:00:13     
+Loading mirror speeds from cached hostfile
+ * elrepo-kernel: mirrors.tuna.tsinghua.edu.cn
+Available Packages
+kernel-lt.x86_64                                                                   4.4.142-1.el7.elrepo                                                   elrepo-kernel
+kernel-lt-devel.x86_64                                                             4.4.142-1.el7.elrepo                                                   elrepo-kernel
+kernel-lt-doc.noarch                                                               4.4.142-1.el7.elrepo                                                   elrepo-kernel
+kernel-lt-headers.x86_64                                                           4.4.142-1.el7.elrepo                                                   elrepo-kernel
+kernel-lt-tools.x86_64                                                             4.4.142-1.el7.elrepo                                                   elrepo-kernel
+kernel-lt-tools-libs.x86_64                                                        4.4.142-1.el7.elrepo                                                   elrepo-kernel
+kernel-lt-tools-libs-devel.x86_64                                                  4.4.142-1.el7.elrepo                                                   elrepo-kernel
+kernel-ml.x86_64                                                                   4.17.8-1.el7.elrepo                                                    elrepo-kernel
+kernel-ml-devel.x86_64                                                             4.17.8-1.el7.elrepo                                                    elrepo-kernel
+kernel-ml-doc.noarch                                                               4.17.8-1.el7.elrepo                                                    elrepo-kernel
+kernel-ml-headers.x86_64                                                           4.17.8-1.el7.elrepo                                                    elrepo-kernel
+kernel-ml-tools.x86_64                                                             4.17.8-1.el7.elrepo                                                    elrepo-kernel
+kernel-ml-tools-libs.x86_64                                                        4.17.8-1.el7.elrepo                                                    elrepo-kernel
+kernel-ml-tools-libs-devel.x86_64                                                  4.17.8-1.el7.elrepo                                                    elrepo-kernel
+perf.x86_64                                                                        4.17.8-1.el7.elrepo                                                    elrepo-kernel
+python-perf.x86_64                                                                 4.17.8-1.el7.elrepo                                                    elrepo-kernel
+```
+
+3、安装最新的主线稳定内核
+```markdown
+yum --enablerepo=elrepo-kernel install kernel-ml
+yum install -y kernel-ml.x86_64 --enablerepo=elrepo-kernel
+```
+
+4、设置GRUB默认的内核版本
+```markdown
+grub2-set-default 0 # 设置GRUB初始化页面的第一个内核将作为默认内核。
+grub2-mkconfig -o /boot/grub2/grub.cfg # 重新创建内核配置。
+reboot  # 重新启动机器才能使新内核生效。
+```

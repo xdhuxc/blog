@@ -15,6 +15,125 @@ categories = [
 
 <!--more-->
 
+### Linux 防火墙简介
+
+防火墙是用于实现 `Linux` 下访问控制功能的，分为硬件防火墙或者软件防火墙两种。任何一个网络中，防火墙工作的地方一定是在网络的边缘。
+
+我们的任务就是去定义防火墙如何去工作，这就是防火墙的策略、规则，以达到让它对出入网络的IP、数据进行检测。
+
+目前市面上比较常见的有三层、四层的防火墙，叫做`网络层防火墙`；还有七层的防火墙，其实就是`代理层的网关`。
+
+对于 TCP/IP 的七层模型来说，`第三层是网络层`，三层的防火墙会在这层`对源地址和目标地址`进行检测。而对于`七层的防火墙`，不论`源端口或者目的端口，源地址或者目的地址`是什么，都将对`所有的东西进行检查`。所以，从设计原理上来讲，七层防火墙更加安全，但是却带来了低效率。所以，市面上通常用的防火墙方案，都是两者结合的。又由于我们需要从防火墙所控制的这个口来访问，所以防火墙的工作效率就成了用户能够访问数据多少的一个最重要的控制，配置不好甚至有可能成为流量的瓶颈。
+
+
+### iptables 
+
+iptables 是 `unix/linux` 自带的基于包过滤的防火墙工具，可以对流入和流出服务器的数据包进行很精细的控制。iptables 主要工作在 OSI 中的二、三、四层。
+
+#### iptables 术语
+
+* 容器：用来形容包含或者所属的关系。`Netfilter/iptables` 是表的容器，`iptables` 包含着各个表；而 `iptables` 的表又是链的容器。
+* 链（chains）：`INPUT`、`OUTPUT`、`FORWARD`、`PREROUTING`、`POSTRROUTING`，链是规则的容器。
+* 规则（Policy）：一条条过滤的语句规则。
+
+#### filter 表
+
+主要和主机自身有关，真正负责主机防火墙功能，过滤流入流出主机的数据包。filter表是iptables默认使用的表。这个表定义了三个链（Chains）：
+
+* INPUT：负责过滤所有目标地址是主机地址的数据包，即，过滤进入主机的数据包。
+* FORWARD：负责转发流经主机的数据包，起转发的作用，和Nat关系很大。LVS NAT 模式，net.ipv4_forward = 1。
+* OUTPUT：处理所有源地址是本机地址的数据包，即，处理从主机发出去的数据包。
+
+#### nat 表
+nat表负责网络地址转换，即来源与目的IP地址和端口的转换。一般用于局域网共享上网或者特殊的端口转换服务相关。
+
+这个表定义了三个链（Chain），nat功能就相当于网络的ACL控制，和网络交换机ACL类似。（访问控制列表（Access Control List，ACL），是路由器和交换机接口的指令列表，用来控制端口进出的数据包）
+
+* OUTPUT：和主机发出去的数据包有关，改变主机发出数据包的目标地址。
+* PREROUTING：在数据包到达防火墙时进行路由判断之前执行的规则，作用是改变数据包的目的地址、目的端口等。
+* POSTROUTING：在数据包离开防火墙时进行路由判断之后执行的规则，作用是改变数据包的源地址、源端口等。例如，我们的虚拟机都是192.168.30.0/16，就是出网的时候被我们的企业路由器把源地址改成了公网地址了。
+
+iptables命令选项输入顺序：
+```markdown
+iptables -t 表名 <-A/I/D/R> 规则链名 [规则号] <-i/o 网卡名> -p 协议名 <-s 源IP/源子网> --sport 源端口 <-d 目标IP/目标子网> --dport 目标端口 -j 动作
+```
+选项如下：
+
+* -A：向规则链中添加条目。
+* -D：从规则链中删除条目。
+* -i：向规则链中插入条目。
+
+
+表名包括：
+
+* raw：高级功能，如、网址过滤。
+* mangle：数据包修改，用于实现服务质量。
+* net：网络地址转换，用于网关路由器。
+* filter：包过滤，用于防火墙规则。
+
+规则链名包括：
+
+* INPUT：处理输入数据包。
+* OUTPUT：处理输出数据包。
+* FORWARD：处理转发数据包。
+* PREROUTING：用于目标地址转换（DNAT）
+* POSTROUTING：用于源地址转换（SNAT）
+
+动作：
+
+* ACCEPT：接收数据包。
+* DROP：丢弃数据包。
+* REDIRECT：重定向、映射、透明代理。
+* SNAT：源地址转换。
+* DNAT：目标地址转换。
+* LOG：日志记录。
+* MASQUERADE：IP伪装（NAT），用于ADSL。
+
+#### 常用命令
+
+1、清理已有 iptables 规则
+```markdown
+iptables -F
+```
+
+2、开放指定的端口
+```markdown
+iptables -A OUTPUT -j ACCEPT                                                     # 允许所有本机向外的访问。
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT                 # 允许已建立的或相关联的通行。
+iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT        # 允许访问本机22端口
+iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 7000:8000 -j ACCEPT # 开放 7000-8000 之间的所有端口
+iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport :7000 -j ACCEPT     # 开放 7000 及其以下的所有端口
+iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 8000: -j ACCEPT     # 开放 8000 及其以上的所有端口
+```
+
+3、屏蔽 IP
+```markdown
+iptables -I INPUT -s 123.45.6.7 -j DROP    # 屏蔽单个IP的命令
+iptables -I INPUT -s 123.0.0.0/8 -j DROP   # 屏蔽整个123.0.0.0/8网段的所有数据包，即从123.0.0.1到123.255.255.254的IP全部封杀掉。
+iptables —I INPUT -s 124.45.0.0/16 -j DROP # 屏蔽整个124.45.0.0/16网段的所有数据包，即从123.45.0.1到123.45.255.254的IP全部封杀掉。
+iptables -I INPUT -s 123.45.6.0/24 -j DROP # 屏蔽整个123.45.6.0/24网段的所有数据包，即从123.45.6.1到123.45.6.254的所有数据包，
+```
+
+4、开启防火墙22端口
+```markdown
+iptables -I INPUT -p tcp --dport 22 -j accept
+```
+
+5、查看防火墙状态
+```markdown
+sudo systemctl status firewalld.service
+```
+
+6、停止防火墙
+```markdown
+sudo systemctl stop firewalld.service
+```
+
+7、停止开机自动启动
+```markdown
+sudo systemctl disable firewalld.service
+```
+
 ### docker bridge 网络模式防火墙配置
 > 以bridge网络模式运行Docker容器需要的防火墙配置
 ```markdown
@@ -43,24 +162,8 @@ COMMIT
 COMMIT
 ```
 
-### 开放防火墙端口
 
-1、开放22端口
-```markdown
--A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
-```
+### 参考资料
 
-2、开放7000-8000之间的所有端口
-```markdown
--A INPUT -p tcp -m state --state NEW -m tcp --dport 7000:8000 -j ACCEPT
-```
+http://man.linuxde.net/iptables
 
-3、开放7000及其以下的所有端口
-```markdown
--A INPUT -p tcp -m state --state NEW -m tcp --dport :7000 -j ACCEPT
-```
-
-4、开放8000及其以上的所有端口
-```markdown
--A INPUT -p tcp -m state --state NEW -m tcp --dport 8000: -j ACCEPT
-```
