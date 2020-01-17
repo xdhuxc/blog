@@ -75,19 +75,19 @@ while 语句还有另外两个重要的命令 continue、break 来跳过循环�
 
 如果条件判断语句永远为 true，循环将会无限的执行下去。
 
-注意：以上的无限循环你可以使用 CTRL+C 来中断循环。
+注意：以上的无限循环你可以使用 `CTRL+C` 来中断循环。
 
-在 python 中，while … else 在循环条件为 false 时执行 else 语句块
+在 python 中，`while … else` 在循环条件为 `false` 时执行 `else` 语句块
 
-类似 if 语句的语法，如果你的 while 循环体中只有一条语句，你可以将该语句与while写在同一行中
+类似 if 语句的语法，如果你的 while 循环体中只有一条语句，你可以将该语句与 while 写在同一行中
 
 #### for循环
 
 重复执行语句
 
-Python for循环可以遍历任何序列的项目，如一个列表或者一个字符串。
+Python for 循环可以遍历任何序列的项目，如一个列表或者一个字符串。
 
-for循环的语法格式如下：
+for 循环的语法格式如下：
 ```markdown
 for iterating_var in sequence:
    statements(s)
@@ -122,7 +122,7 @@ for index in range(len(fruits)):
 print "Good bye!"
 ```
 
-在 python 中，for … else 表示这样的意思，for 中的语句和普通的没有区别，else 中的语句会在循环正常执行完（即 for 不是通过 break 跳出而中断的）的情况下执行，while … else 也是一样。
+在 python 中，`for … else` 表示这样的意思，for 中的语句和普通的没有区别，else 中的语句会在循环正常执行完（即 for 不是通过 break 跳出而中断的）的情况下执行，`while … else` 也是一样。
 
 ```markdown
 #!/usr/bin/python
@@ -158,7 +158,7 @@ while expression:
    statement(s)
 ```
 
-可以在循环体内嵌入其他的循环体，如在while循环中可以嵌入for循环， 反之，你可以在for循环中嵌入while循环
+可以在循环体内嵌入其他的循环体，如在 while 循环中可以嵌入 for 循环， 反之，你可以在 for 循环中嵌入 while 循环
 
 ### 循环控制语句
 
@@ -170,33 +170,33 @@ Python支持以下循环控制语句：
 
 在语句块执行过程中终止循环，并且跳出整个循环
 
-break语句用来终止循环语句，即循环条件没有False条件或者序列还没被完全递归完，也会停止执行循环语句。
+break 语句用来终止循环语句，即循环条件没有 False 条件或者序列还没被完全递归完，也会停止执行循环语句。
 
-break语句用在while和for循环中。
+break 语句用在 while 和 for 循环中。
 
-如果使用嵌套循环，break语句将停止执行最深层的循环，并开始执行下一行代码。
+如果使用嵌套循环，break 语句将停止执行最深层的循环，并开始执行下一行代码。
 
-Python语言 break语句语法
+Python 语言 break 语句语法
 ```markdown
 break
 ```
 
-#### continue语句
+#### continue 语句
 
 在语句块执行过程中终止当前循环，跳出该次循环，执行下一次循环
 
-Python continue 语句跳出本次循环，而break跳出整个循环。
+Python continue 语句跳出本次循环，而 break 跳出整个循环。
 
-continue 语句用来告诉Python跳过当前循环的剩余语句，然后继续进行下一轮循环。
+continue 语句用来告诉 Python 跳过当前循环的剩余语句，然后继续进行下一轮循环。
 
-continue语句用在while和for循环中。
+continue 语句用在 while 和 for 循环中。
 
 Python 语言 continue 语句语法格式如下：
-```
+```markdown
 continue
 ```
 
-#### pass语句
+#### pass 语句
 
 pass是空语句，是为了保持程序结构的完整性
 

@@ -15,6 +15,7 @@ categories = [
 <!--more-->
 
 ### 常用代码
+
 1、时间戳
 ```markdown
 import time
@@ -90,5 +91,7 @@ def func1():
 kernprof -l -v xdhuxc.py
 ```
 
-参考资料：https://segmentfault.com/a/1190000007518598
+### 参考资料
+
+https://segmentfault.com/a/1190000007518598
 
