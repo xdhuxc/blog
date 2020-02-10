@@ -149,7 +149,7 @@ kubectl exec xdhuxc-message -c xdhuxc-message -- ls /
 
 17、在已运行的 pod 里面运行命令，仅有一个容器的情况下
 ```markdown
-kubectl exec xdhuxc-message -- ls / #
+kubectl exec -it xdhuxc-message -n kube-admin bash
 ```
 
 18、将服务转发到端口
