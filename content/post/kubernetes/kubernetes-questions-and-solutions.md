@@ -26,7 +26,7 @@ categories = [
 
 目前 Kubernetes 和 Docker 尚不支持内存 Swap 空间的隔离机制。
 
-3、在node节点上使用kubectl命令时，报错如下：
+3、在 `node` 节点上使用 `kubectl` 命令时，报错如下：
 ```markdown
 [root@k8s-172 ~]# kubectl get nodes
 The connection to the server localhost:8080 was refused - did you specify the right host or port?
@@ -75,3 +75,8 @@ kubectl delete namespace c87e2267-1001-4c70-bb2a-ab41f3b81aa3
 6、应用部署完毕后，状态全部正常，但是访问却 504，
 
 注意，不要使虚拟机的 IP 地址和 calico 的子网 IP 地址一样。如果有冲突，需要进行修改 calico.yaml 中环境变量 CALICO_IPV4POOL_CIDR 的值，修改为新的子网地址，然后删除原有的 calico，ingress 和 kube-dns，依次重新创建 calico，ingress，kube-dns
+
+7、应用开发完毕后，本地启动没有问题，可以正常运行，但部署到 kubernetes 上后，web 服务总是启动不起来，进入 pod 中使用 netstat 查看后，发现有个需要连接的 IP 地址的状态为：syn_wait
+
+解决：当下游服务连接不通时，往往会导致 web 服务器启动不起来。经过运维同事打开安全组，服务终于正常运行了。
+
