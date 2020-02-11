@@ -173,3 +173,20 @@ promtool check rules /etc/example.rules.yml
 promtool check prometheus.yml
 ```
 
+### 增加新的 AlertManager 报警方式
+
+1、在 `alertmanager/config/config.go` 文件中的结构体 `GlobalConfig` 中增加新的配置，此结构体对应于 alertmanager.yaml 中的全局配置；在结构体 `Receiver` 中增加具体报警接收者的配置，对应于 alertmanager.yaml 中的 receiver 部分的配置；在 `func (c *Config) UnmarshalYAML(unmarshal func(interface{}) error) error` 接口中为 Global 部分的配置赋予默认值。 
+
+2、在 `alertmanager/notify` 目录下创建目录 `telephone`，可参照其他的报警通道，实现 `func New(c *config.TelephoneConfig, l log.Logger) (*Notifier, error)`函数和 `func (n *Notifier) Notify(ctx context.Context, as ...*types.Alert) (bool, error)`接口，完成业务代码的开发，
+
+3、在 `alertmanager/config/notifiers.go` 文件中增加结构体 `TelephoneConfig`，存储发送报警消息时的通用配置，实现其 `func (t *TelephoneConfig) UnmarshalYAML(unmarshal func(interface{}) error) error` 接口；在此文件最上方，定义默认的 `DefaultTelephoneConfig`
+
+4、在 `alertmanager/cmd/alertmanager/main.go` 文件的 `func buildReceiverIntegrations(nc *config.Receiver, tmpl *template.Template, logger log.Logger) ([]notify.Integration, error)` 方法中，注册我们新编写的报警通知方式。
+```markdown
+for i, c := range nc.TelephoneConfigs {
+		add("telephone", i, c, func(l log.Logger) (notify.Notifier, error) { return telephone.New(c, l) })
+}
+```
+
+5、在 `alertmanager/notify/notify.go` 文件中的 `func newMetrics(r prometheus.Registerer) *metrics` 函数中注册其指标信息。
+
