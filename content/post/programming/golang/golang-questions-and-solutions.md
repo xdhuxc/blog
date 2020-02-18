@@ -107,3 +107,12 @@ go: modules disabled inside GOPATH/src by GO111MODULE=auto; see 'go help modules
 export GO111MODULE=on
 ```
 
+### 使用 VSCode 运行 golang 程序单元测试，没有代码日志输出
+在 `.vscode/settings.json` 文件中，加入如下内容：
+```markdown
+"go.testFlags": [
+    "-v"
+],
+"go.testTimeout": "300s",  # 单元测试执行时间超过 300s，则直接结束该测试，
+```
+
