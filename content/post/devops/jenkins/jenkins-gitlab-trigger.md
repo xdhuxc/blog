@@ -5,6 +5,7 @@ lastmod = "2019-12-14"
 tags = [
     "DevOps",
     "Jenkins",
+    "Gitlab"
 ]
 categories = [
     "技术"
@@ -33,7 +34,7 @@ categories = [
 
 使得 Jenkins 可以访问 GitLab 的 API 接口。
 
-2）在 Jenkins 中，选中 `Build when a change is pushed to GitLab`，将 `GitLab webhook URL` 地址
+2）在 Jenkins 中，选中 `Build when a change is pushed to GitLab`（此处需要使用插件 `Gitlab Hook`），将 `GitLab webhook URL` 地址
 
 <center>
 <img src="/image/devops/jenkins/WechatIMG610.jpeg" width="800px" height="300px" />
