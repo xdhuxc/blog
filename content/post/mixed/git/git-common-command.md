@@ -91,8 +91,10 @@ origin
 ```
 
 2、列出已经存在的远程分支的地址
+```markdown
 wanghuans-MacBook-Pro:xdhuxc wanghuan$ git remote get-url origin
 git@github.xdhuxc/xdhuxc.git
+```
 
 3、添加远程仓库
 ```markdown
@@ -118,14 +120,17 @@ HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历�
 ```markdown
 git branch xdhuxc
 ```
+
 2、切换到新分支，master 分支上的内容自动同步
 ```markdown
 git checkout xdhuxc
 ```
+
 3、将新分支发布到 github 上
 ```markdown
 git push origin xdhuxc
 ```
+
 #### git 将一个本地工程推向多个远程仓库
 推送时，可以同时推送至多个远程仓库
 1、添加另外一个远程仓库
@@ -136,6 +141,12 @@ git remote set-url --add origin git@github.com:xdhuxc/xdhuxc.git
 ```markdown
 git push origin master:master
 ```
+
+#### 设置本地分支对应的远程分支 
+```markdown
+git branch --set-upstream-to=origin/s0.20.2 s0.20.2
+```
+此命令将本地分支 `s0.20.2` 对应的远程分支设置为 `s0.20.2`
 
 #### 生成SSH-key
 github的SSH配置如下：
