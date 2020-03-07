@@ -157,8 +157,22 @@ YYYY-MM-DD HH:mm:ss.SSSSSSSSS
 
 如果我们想给某给报警设置阈值，使得 95% 的报警都不发送，那么我们就需要计算这个报警的百分位数。百分位数可以使用线图来绘制，也基本跟线图一样，区别在于以下两点：
 
-1、
+1、`Metrics` 中使用 `Percentiles` 聚合器，`Field` 选择 `labels.value`，注意，`labels.value` 必须是 `ES` 中的数值类型，否则不能用于计算百分位数，在 `Percents` 中分别填入 `90`，`95`，`99`，表示需要计算 `90% 分位数`，`95% 分位数`，`99% 分位数`。
+<center>
+<img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG769.png" width="800px" height="300px" />
+</center>
 
+2、在 Bucket 的 Split series 中，此处使用 Filters 聚合器，查询条件为：`labels.alertname.keyword : "kube-admin相关容器内存使用率大于80%" and labels.severity.keyword : "critical" and labels.group.keyword : "RST"`，查询出待计算百分位数的报警，在 `Filter 1 label` 中填入 `kube-admin相关容器内存使用率大于80%`
+<center>
+<img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG770.png" width="800px" height="300px" />
+</center>
+
+最后显示的百分位图为：
+<center>
+<img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG771.png" width="800px" height="300px" />
+</center>
+
+保存该图，命名为：百分位图-kube-admin相关容器内存使用率大于80%
 
 
 ### 总结
