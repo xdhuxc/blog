@@ -70,7 +70,10 @@ YYYY-MM-DD HH:mm:ss.SSSSSSSSS
 
 #### 可视化图表
 
-1、我们先制作一个按报警名称聚合的饼图，表示各个报警在报警总数中所占的比例。选择 `Visualize`，点击 `Create visualization`，点击 `Pie`，选择索引模式 `alertmanager-alerts*`，来到图表编辑页面
+##### 饼图
+
+先制作一个按报警名称聚合的饼图，表示各个报警在报警总数中所占的比例。选择 `Visualize`，点击 `Create visualization`，点击 `Pie`，选择索引模式 `alertmanager-alerts*`，来到图表编辑页面
+
 <center>
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG755.png" width="800px" height="300px" />
 </center>
@@ -83,7 +86,7 @@ YYYY-MM-DD HH:mm:ss.SSSSSSSSS
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG756.png" width="800px" height="300px" />
 </center>
 
-聚合器选择 `Terms`，`Field` 选择 `labels.alertname.keyword`，表示根据 field 字段的值相等来分组，`Order` 可以默认，`Size` 增大到 100，打开 `Group other values in separate bucket`，在 `Label for other bucket` 中填入 `其他`，`Custom label` 中填入 `报警名称`
+聚合器选择 `Terms`，`Field` 选择 `labels.alertname.keyword`，`Order by` 选择 `Metric：报警总数`，`Order` 默认即可，`Size` 增大到 100，打开 `Group other values in separate bucket`，在 `Label for other bucket` 中填入 `其他`，`Custom label` 中填入 `报警名称`
 
 <center>
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG757.png" width="800px" height="300px" />
@@ -105,7 +108,9 @@ YYYY-MM-DD HH:mm:ss.SSSSSSSSS
 
 保存该图标，命名为：各报警统计
 
-2、我们或许还想观察各个报警的总数随时间的变化情况，此时，我们可以制作一个折线图，选择 `Visualize`，点击 `Create visualization`，点击 `Line`，选择索引模式 `alertmanager-alerts*`，来到图表编辑页面
+##### 线图
+
+或许还想观察各个报警的总数随时间的变化情况，此时，我们可以制作一个折线图，选择 `Visualize`，点击 `Create visualization`，点击 `Line`，选择索引模式 `alertmanager-alerts*`，来到图表编辑页面
 
 <center>
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG760.png" width="800px" height="300px" />
@@ -147,5 +152,13 @@ YYYY-MM-DD HH:mm:ss.SSSSSSSSS
 </center>
 
 保存该图标，命名为：各报警随时间的变化情况
+
+##### 百分位图
+
+如果我们想给某给报警设置阈值，使得 95% 的报警都不发送，那么我们就需要计算这个报警的百分位数。百分位数可以使用线图来绘制，也基本跟线图一样，区别在于以下两点：
+
+1、
+
+
 
 ### 总结
