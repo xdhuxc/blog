@@ -272,7 +272,7 @@ CMD cmd_exec cmd_p1 | /bin/sh -c cmd_exec cmd_p1 | /bin/sh -c entry_exec entry_p
 
 5、如果安装应用时需要配置一些特殊的环境变量，在安装后要还原不需要保持的变量值；
 
-6、使用Dockerfile创建镜像时，要添加 `.dockerignore` 文件或使用空的工作目录；
+6、使用 `Dockerfile` 创建镜像时，要添加 `.dockerignore` 文件或使用空的工作目录；
 
 ### 使用容器时需要避免的一些做法
 

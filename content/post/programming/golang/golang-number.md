@@ -30,7 +30,7 @@ func main() {
 	percent := "23.456"
 	
 	// 使用 strconv 包的 ParseFloat 方法将字符串转换为 float64
-	result, _ := strconv.ParseFloat(percent, 10)
+	result, _ := strconv.ParseFloat(percent, 32)
 	// 使用 fmt 包的 Sprintf 方法实现保留小数点后两位
 	fmt.Println(fmt.Sprintf("%.2f", result))
 }
