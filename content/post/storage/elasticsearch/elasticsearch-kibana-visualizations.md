@@ -100,11 +100,13 @@ YYYY-MM-DD HH:mm:ss.SSSSSSSSS
 * Show labels：是否显示标签，在此处对应于各报警的名称
 * Show values：是否显示值，在此处对应于各报警所占百分比是否显示在标签后面的括号中。
 
-最后显示的饼图为：
+最后的饼图为：
 
 <center>
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG758.png" width="800px" height="300px" />
 </center>
+
+可以看到，在所有的报警中，各报警所占的比例。
 
 保存该图标，命名为：各报警统计
 
@@ -145,34 +147,44 @@ YYYY-MM-DD HH:mm:ss.SSSSSSSSS
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG767.png" width="800px" height="300px" />
 </center>
 
-最后显示的折线图为：
+最后的折线图为：
 
 <center>
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG768.png" width="800px" height="300px" />
 </center>
 
+可以看出，随着时间的变化，有些报警在减少，有些报警在迅速增加。
+
 保存该图标，命名为：各报警随时间的变化情况
 
 ##### 百分位图
 
-如果我们想给某给报警设置阈值，使得 95% 的报警都不发送，那么我们就需要计算这个报警的百分位数。百分位数可以使用线图来绘制，也基本跟线图一样，区别在于以下两点：
+如果我们想给某给报警设置阈值，使得 95% 的报警都不发送，那么我们就需要计算这个报警的百分位数。
+
+百分位数可以使用线图来绘制，也基本跟线图一样，区别在于以下两点：
 
 1、`Metrics` 中使用 `Percentiles` 聚合器，`Field` 选择 `labels.value`，注意，`labels.value` 必须是 `ES` 中的数值类型，否则不能用于计算百分位数，在 `Percents` 中分别填入 `90`，`95`，`99`，表示需要计算 `90% 分位数`，`95% 分位数`，`99% 分位数`。
 <center>
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG769.png" width="800px" height="300px" />
 </center>
 
-2、在 Bucket 的 Split series 中，此处使用 Filters 聚合器，查询条件为：`labels.alertname.keyword : "kube-admin相关容器内存使用率大于80%" and labels.severity.keyword : "critical" and labels.group.keyword : "RST"`，查询出待计算百分位数的报警，在 `Filter 1 label` 中填入 `kube-admin相关容器内存使用率大于80%`
+2、在 `Bucket` 的 `Split series` 中，此处使用 `Filters` 聚合器，查询条件为：`labels.alertname.keyword : "kube-admin相关容器内存使用率大于80%" and labels.severity.keyword : "critical" and labels.group.keyword : "RST"`，查询出待计算百分位数的报警，在 `Filter 1 label` 中填入 `kube-admin相关容器内存使用率大于80%`
 <center>
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG770.png" width="800px" height="300px" />
 </center>
 
-最后显示的百分位图为：
+最后的百分位图为：
 <center>
 <img src="/image/storage/elasticsearch/elasticsearch-kibana-visualizations/WechatIMG771.png" width="800px" height="300px" />
 </center>
+
+可以看到，在2020年03月05日5点时，kube-admin相关容器内存使用率大于80% 报警的 90% 分位数为 77.162，也就是 value 设置为 77.162 时，90% 的报警都不会发送出来。
+
+同时也应该注意，分位数是随着报警总数的增多而变化的，并非固定值。
 
 保存该图，命名为：百分位图-kube-admin相关容器内存使用率大于80%
 
 
 ### 总结
+
+Kibana 的图表制作还是很方便的，了解了基本的使用方法后，可以制作出来很多漂亮、实用的图表，为业务提供支持和建议。
