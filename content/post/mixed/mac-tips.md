@@ -52,3 +52,8 @@ Mac 系统的环境变量，加载顺序为：`/etc/profile`，`/etc/paths`，`~
 解决：
 
 使用 `zsh` 后，我们在 ~/.zshrc 文件中写入环境变量，关闭当前终端，重新打开新的终端，即可看到写入的环境变量。
+
+3、有时候 Mac 从睡眠状态恢复之后没有声音，这是因为 Mac OS X 的核心音频守护进程（coreaudiod）出了问题，杀死该进程即可：（会自动重启）
+```markdown
+sudo killall coreaudiod
+```
