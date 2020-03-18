@@ -99,6 +99,15 @@ children := gjson.GetBytes(dataInBytes, "children").Array()
 
 另外，根据代码部分的说明，如果数据本身就是字节形式的, `GetBytes(json []byte, path string)` 方法优于 `Get(string(data), path)`
 
+### 常见问题及解决
+
+1、使用 `json.Marshal()` 对结构体进行序列化时，报如下错误：
+```markdown
+runtime: goroutine stack exceeds 1000000000-byte limit
+fatal error: stack overflow
+```
+可能是结构体中出现了循环引用，使用 ``json:"-"`` 不导出该字段即可解决。
+
 ### 参考资料
 
 https://github.com/tidwall/gjson
