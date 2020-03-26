@@ -194,6 +194,63 @@ Expecting 'STRING', 'NUMBER', 'NULL', 'TRUE', 'FALSE', '{', '[', got 'EOF'
 
 字符串内容为 YAML 格式，但是 mode 却为：`text/x-json`，将其改为：`text/x-yaml` 试下。
 
+2、使用多个 CodeMirror 实例时，会发生数据不能及时更新，需要获取到焦点才会更新数据的情况，解决方法如下：
+
+引入 refresh 插件，在处理函数中使用定时任务刷新 CodeMirror 组件，代码示例如下：
+```markdown
+<template>
+   <codemirror ref="jenkinsFileCode" v-model="content" :options="fileOptions" class="json-editor"></codemirror>
+</template>
+
+<script>
+import 'codemirror/addon/display/autorefresh.js';
+
+export default {
+  name: 'Pipeline',
+  data() {
+    return {
+      content: '',
+      fileOptions: {
+        lineNumbers: true,
+        mode: 'text/x-yaml',
+        gutters: ['CodeMirror-lint-markers'],
+        theme: 'erlang-dark',
+        lint: true,
+        lineWrapping: true,
+        autoRefresh: true // 此属性是 autorefresh 的，需要引入 autorefresh.js
+      }
+    }
+  }
+  methods: {
+    handle() {
+      setInterval(() => {
+        this.$refs['jenkinsFileCode'].refresh();
+      }, 1);
+    }
+  }
+}
+</script>
+
+<style>
+  .json-editor {
+    height: 100%;
+  }
+  .CodeMirror {
+    border: 1px solid #eee;
+    height: 950px;
+  }
+  .CodeMirror-scroll {
+    height: 950px;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+</style>
+```
+
+
+
+
+
 ### 参考资料
 https://codemirror.net/
 
