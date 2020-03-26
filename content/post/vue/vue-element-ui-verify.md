@@ -161,10 +161,10 @@ export default {
 在 businessVerifyRules 中添加自定义校验器
 ```markdown
 businessVerifyRules: {
-        port: [{
-          validator: validatePort, trigger: 'blur'
-        }]
-      }
+    port: [{
+      validator: validatePort, trigger: 'blur'
+    }]
+}
 ```
 通过 validator 字段指定自定义校验函数 validatePort，触发条件为：blur。
 

@@ -5,8 +5,7 @@ lastmod = "2020-03-06"
 tags = [
     "ElasticSearch",
     "AlertManager",
-    "Kibana",
-    "数据库"
+    "Kibana"
 ]
 categories = [
     "技术"
