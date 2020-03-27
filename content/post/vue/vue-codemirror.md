@@ -223,9 +223,9 @@ export default {
   }
   methods: {
     handle() {
-      setInterval(() => {
-        this.$refs['jenkinsFileCode'].refresh();
-      }, 1);
+       setTimeout(() => {
+              this.$refs.jenkinsFileCode.refresh();
+       }, 50);
     }
   }
 }
