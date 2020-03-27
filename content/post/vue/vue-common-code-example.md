@@ -143,3 +143,52 @@ export default {
 }
 </script>
 ```
+
+### 响应式数组
+
+由于 JavaScript 的限制，Vue 不能检测以下数组的变动：
+
+1、当利用索引直接设置一个数组项时，例如：`vm.items[3] = 'a'`
+
+2、修改数组的长度时，例如，`vm.items.length = 10`
+
+比如：
+```markdown
+var vm = new Vue({
+    data: {
+        items: ['a', 'b', 'c']
+    }
+})
+vm.items[3] = 'a' // 不是响应式的
+vm.items.length = 20 // 不是响应式的
+```
+
+以上两种改变不是响应式的，因此无法直接在视图上显示出来。
+
+解决第一类问题的两种方法如下所示：
+```markdown
+// Vue.set
+Vue.set(vm.items, 3, 'a')
+// Array.prototype.splice
+vm.items.splice(3, 1, 'a')
+```
+
+以上两种方法都可以实现和 `vm.items[3] = 'a'` 相同的效果，同时也将在响应式系统内触发状态更新。
+
+也可以使用 `vm.$set` 实例方法，该方法是全局方法 Vue.set 的一个别名：
+```markdown
+vm.$set(vm.items, 3, 'a')
+```
+
+可以使用 `splice` 方法可以解决第二类问题
+```markdown
+vm.items.splice(10)
+```
+
+使用如上所示的方法更新数组后，视图将会和数组同步变化。
+
+参考资料：
+
+https://cn.vuejs.org/v2/guide/list.html#%E6%9B%BF%E6%8D%A2%E6%95%B0%E7%BB%84
+
+https://cn.vuejs.org/v2/guide/reactivity.html
