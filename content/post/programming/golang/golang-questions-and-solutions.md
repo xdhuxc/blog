@@ -115,4 +115,3 @@ export GO111MODULE=on
 ],
 "go.testTimeout": "300s",  # 单元测试执行时间超过 300s，则直接结束该测试，
 ```
-

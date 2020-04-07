@@ -47,3 +47,7 @@ receivers:{{range gets "/alertmanager/receivers/*"}}{{$item := json .Value}}{{ i
     to: {{$item.url}}{{end}}{{end}}
 ```
 数据部分以 JSON 格式向模板传递。
+
+### 注意事项
+
+golang template 对于数组循环输出，空数组（数组长度为 0）不进行渲染
