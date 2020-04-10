@@ -184,6 +184,13 @@ YYYY-MM-DD HH:mm:ss.SSSSSSSSS
 
 保存该图，命名为：百分位图-kube-admin相关容器内存使用率大于80%
 
+### 注意事项
+
+1、在 `Kibana` 中创建索引模式（Index Pattern）之后，原来索引中字段的数据类型就将保持不变，即使 ElasticSearch 中的数据类型改变了，此时，需要删除原来的索引模式，重新从 ElasticSearch 的索引创建 Kibana 使用的索引模式。
+
+2、Kibana 的图表依赖于其索引模式，删除索引模式后，图表将无法正常显示。
+
+
 
 ### 总结
 
