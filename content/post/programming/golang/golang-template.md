@@ -50,4 +50,6 @@ receivers:{{range gets "/alertmanager/receivers/*"}}{{$item := json .Value}}{{ i
 
 ### 注意事项
 
-golang template 对于数组循环输出，空数组（数组长度为 0）不进行渲染
+1、golang template 对于数组循环输出，空数组（数组长度为 0）不进行渲染
+
+2、在 `range-end` 结构内部，如果要使用外部的变量，比如，`.Name`，需要写成 `$.Name`，即在外部变量名称前加 `$` 即可，单独的 `$` 等同于 `global`。
