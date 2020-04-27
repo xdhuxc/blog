@@ -28,7 +28,7 @@ mysql> show grants for 'xdhuxc'@'%';
 
 2、授予权限
 ```markdown
-grant select, insert, update, delete on 'user.*' to 'xdhuxc'@'%'
+grant select, insert, update, delete on user.* to 'xdhuxc'@'%'
 ```
 
 3、授予所有权限
@@ -36,6 +36,15 @@ grant select, insert, update, delete on 'user.*' to 'xdhuxc'@'%'
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'*' IDENTIFIED BY 'Xdhuxc123' WITH GRANT OPTION;
 ```
 通过此命令也可以修改 MySQL 用户的密码
+
+4、创建用户再授权
+```markdown
+create user 'sonarqube' identified by 'Shareit@2020';
+
+grant select, insert, update, delete on sonarqube.* to 'sonarqube'@'%';
+
+show grants for 'sonarqube'@'%';
+```
 
 ### 忘记密码修改密码
 

@@ -28,6 +28,7 @@ ERROR 1010 (HY000): Error dropping database (can't rmdir './yhtdb', errno: 39)
 ```
 解决：在`/var/lib/mysql`下，删除该数据库对应的目录，重新导入sql文件。
 
+
 2、 mysql 服务启动失败
 可能原因：
 ```markdown
@@ -35,11 +36,13 @@ ERROR 1010 (HY000): Error dropping database (can't rmdir './yhtdb', errno: 39)
 2、可能是 mysql 配置文件修改错误，导致某些配置参数名称错误。
 ```
 
+
 3、向数据库表中插入数据时，报错如下：
 ```markdown
 (1265, "Data truncated for column 'income' at row 1")
 ```
 数据库表定义时，定义的字段 income 长度太短，更改该数据类型，增大其长度。
+
 
 4、在 Mac 上安装的 MySQL 8.0.1，使用 DbVisualizer 连接时，报错如下：
 ```markdown
@@ -68,6 +71,7 @@ Unable to load authentication plugin 'caching_sha2_password'.
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root@20190322';
 ```
 
+
 5、连接 MySQL 时，报错如下：
 ```markdown
 Long Message:
@@ -80,11 +84,13 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'wh199404
 flush privileges;
 ```
 
+
 6、更新数据时，报错如下：
 ```markdown
 Error 1062: Duplicate entry '23viewer12fgdfdsgsd' for key 'name'
 ```
 检查数据库，确实没有重复的名称，删除数据库表，重新创建表结构。
+
 
 7、使用 GORM 框架时，插入含时间戳类型的结构体字段时，报错如下：
 ```markdown
@@ -92,3 +98,18 @@ Error 1292: Incorrect datetime value: '0000-00-00' for column 'create_time' at r
 ```
 原因：时间戳类型字段 CreateTime，UpdateTime 没有赋值，导致类型为 datetime类型，从而报错。
 
+
+8、使用用户名和密码连接 MySQL 时，可能会报如下错误：
+```markdown
+Unable to load authentication plugin 'caching_sha2_password'.
+```
+ 这是 mysql 5.x 和 8.x 的区别，5.x 版本的认证插件是：default_authentication_plugin=mysql_native_password，8.x 的认证插件是：default_authentication_plugin=caching_sha2_password。mysql 驱动已经更新适配了caching_sha2_password 的密码规则，升级到最新版本即可。
+
+
+9、使用用户名和密码连接 MySQL 时，可能会报如下错误：
+```markdown
+public key retrieval is not allowed
+```
+在连接 MySQL 的参数中，设置 `allowPublicKeyRetrieval=true`，如果用户使用了 sha256_password 认证，密码在传输过程中必须使用 TLS 协议保护，但是如果 RSA 公钥不可用，可以使用服务器提供的公钥；可以在连接中通过 ServerRSAPublicKeyFile 指定服务器的 RSA 公钥，或者AllowPublicKeyRetrieval=True参数以允许客户端从服务器获取公钥；但是需要注意的是 AllowPublicKeyRetrieval=True可能会导致恶意的代理通过中间人攻击(MITM)获取到明文密码，所以默认是关闭的，必须显式开启。
+
+参考：https://mysqlconnector.net/connection-options/
