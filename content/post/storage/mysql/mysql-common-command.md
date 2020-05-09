@@ -87,6 +87,11 @@ UPDATE `users` SET name='wangxin', age=24 WHERE user_id=13
 ALTER TABLE `users` ADD `country` varchar(20) NOT NULL
 ```
 
+5、删除字段
+```markdown
+ALTER TABLE `users` DROP COLUMN `country`;
+```
+
 ### 键操作
 1、查询某张表中存在的键
 ```markdown
