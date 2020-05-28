@@ -604,13 +604,18 @@ docker build [options] path|url|-
 ```
 #### 示例
 1、使用当前目录的 `Dockerfile` 创建镜像
-```
+```markdown
 docker build -t xdhuxc/mysql:5.7 .
 ```
 2、使用 URL `github.com/creack/docker-firefox` 的 `Dockerfile` 创建镜像
-```
+```markdown
 docker build github.com/creack/docker-firefox
 ```
+3、指定 dockerfile 构建镜像
+```markdown
+docker build -t xdhuxc/go-build:v1.13.11 -f Dockerfile-local .
+```
+
 ### history
 > docker history 命令用于查看指：定镜像的创建历史
 
