@@ -140,6 +140,13 @@ Jun 28 11:28:46 k8s-node dockerd[15819]: time="2018-06-28T11:28:46.688238156+08:
 ```
 首先，查看磁盘是否还有空间，
 
+8、构建 docker 镜像时，报错如下：
+```markdown
+Step 6/7 : ADD src/template /etc/template/
+ADD failed: stat /var/lib/docker/tmp/docker-builder488455212/src/template: no such file or directory
+```
+而实际上，该路径是正确的，可能是将该目录的上级目录放到了 .gitignore 文件中，将该目录放到 .gitignore 文件中包含的目录之外即可。
+
 
 
 

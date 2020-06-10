@@ -458,6 +458,15 @@ venv/**（或者vendor/**）：排除 venv 目录，位于 venv 目录下的文�
 
 2、SonarQube 从 v7.9 之后，不再支持 MySQL，仅支持 PostgreSQL，Oracle，Microsoft SQL Server，具体原因见：https://community.sonarsource.com/t/end-of-life-of-mysql-support/8667
 
+### 常见问题及解决
+
+1、sonarqube 报如下警告：
+```markdown
+SCM provider autodetection failed. Please use "sonar.scm.provider" to define SCM of your project, or disable the SCM Sensor in the project settings.
+```
+
+增加 `sonar.scm.disabled=true` 配置，禁用 SCM。
+
 
 ### 参考资料
 
