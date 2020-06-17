@@ -449,7 +449,7 @@ venv/**（或者vendor/**）：排除 venv 目录，位于 venv 目录下的文�
 **/*.html（或者**/*.css）：排除所有目录下后缀为 .html 的文件
 ```
 
-4、对于 golang，python 等项目的 vendor 或 venv 等目录，一定要使用 sonar.exclusions 参数排除掉该目录，不然，既消耗时间，也没价值。
+4、对于 golang，python 等项目的 vendor 或 venv 等目录，一定要使用 sonar.exclusions 参数排除掉该目录，否则 SonarQube 会将这些目录中的代码也进行分析。
 
 
 ### 其他事项
