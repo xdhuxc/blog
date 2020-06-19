@@ -32,12 +32,12 @@ stage('Deploy') {
                     def payload = """
                         { "app": "xdhuxc-app" }
                     """
-                    
                     def authorization = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTExNzkzNTYsInVzZXIiOiJ3YW5naHVhbnxbMTcgMyA0IDUgNiA3IDggOSAxMCAxMSAxMiAxMyAxNiAxOSAyMCAyMSAyMiAyMyAyNCAyNSAyNl18YWRtaW4ifQ.WR7GaFdm0y2SE3WHGYfE_VbTiXZovmm5hBojvhLn5NI"
                     def app = "xdhuxc-app"
                     def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PUT', requestBody: payload, url: "http://127.0.0.1:80/xdhuxc/apps?app=${app}&authorization=${authorization}", validResponseCodes: "100:511"
-                    
-                    if (response.status != 200) {
+                    if (response.status == 200) {
+                        println("Http request to ${url} is successfully, the body is ${body}")
+                    } else {
                         throw new Exception("the request failed, the http response status is ${response.status}, content is ${response.content}")
                     }
                 }
@@ -54,13 +54,40 @@ stage('Deploy') {
 def response = httpRequest customHeaders: [[name: 'cid', value: '110']]
 ```
 
-更多参数，参考：https://www.jenkins.io/doc/pipeline/steps/http_request/#http-request-plugin
+默认情况下，会输出整个请求的信息，包括：URL、请求头、返回码等。如果请求中含有不希望显示的 token，可以修改 `quiet: true` 参数，不显示请求详情。
+
+有时，我们可能会在提交的数据中加入变量，这时可通过如下方式提交数据：
+```markdown
+import groovy.json.JsonOutput
+
+stage('Deploy') {
+    steps {
+        container('golang-build-container') {
+            script {
+                ws(env.WORKSPACE) { 
+                    def url = 'http://127.0.0.1:8000/xdhuxc/apps?app=xdhuxc-cicd'
+                    def body = JsonOutput.toJson(["xdhuxc-cicd": env.image])
+                    def headers = [[name: 'authorization', value: 'Bearer zZXIiOiJzZ3QtamVua2lucy11cGRhdGUtaW1hZ2V8WzE3IDEwIDExIDEyIDEzIDE2IDE5IDIwIDIxIDIyIDIzIDI0IDMgNCA1IDYgNyA4IDldfG9wZW5hcGktc2d0LWplbmtpbnMtdXBkYXRlLWltYWdlIn0']]
+                    def response = httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', customHeaders: headers, httpMode: 'PUT', requestBody: body, url: url, validResponseCodes: "100:511", quiet: true
+                    if (response.status == 200) {
+                        println("Http request to ${url} is successfully, the body is ${body}")
+                    } else {
+                        throw new Exception("Deploy to kubernetes failed, the http response status is ${response.status}, content is ${response.content}")
+                    }
+                 }
+            }
+        }
+    }
+}
+```
+
+
 
 
 ### 参考资料
 
 https://www.jenkins.io/doc/pipeline/steps/http_request/#httprequest-perform-an-http-request-and-return-a-response-object
 
-https://www.jenkins.io/doc/pipeline/steps/http_request/#http-request-plugin
+http request 插件参数：https://www.jenkins.io/doc/pipeline/steps/http_request/#http-request-plugin
 
 https://github.com/jenkinsci/http-request-plugin
