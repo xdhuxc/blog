@@ -158,3 +158,18 @@ npm ERR!     /Users/wanghuan/.npm/_logs/2019-10-08T07_42_00_941Z-debug.log
 主要问题在于 webpack 和 compression-webpack-plugin 的版本的适配性问题，在不同的版本搭配下，compression-webpack-plugin 的配置写法不同。
 
 原来默认安装的 compression-webpack-plugin 的版本为 3.0.0，降低版本到 1.1.12，即可正常构建。
+
+### 引用组件注意事项
+引用组件时，报错如下：
+```markdown
+"export 'InfoCard' was not found in '@/components/InfoCard/index.vue'
+```
+
+可能是引用的方式不对，注意，引用组件是是引用默认的组件，
+```markdown
+import InfoCard from '@/components/InfoCard/index.vue';
+```
+而不是命名的组件
+```markdown
+import { InfoCard } from '@/components/InfoCard/index.vue';
+```
