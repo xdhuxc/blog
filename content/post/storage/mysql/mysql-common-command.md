@@ -190,6 +190,12 @@ source /tmp/database_name.sql # 导入数据库表结构和数据
 mysql -u user_name -p password database_name < /tmp/database_name.sql –default-character-set = utf8
 ```
 
+### 查询命令
+1、排除某些字符开头的数据
+```markdown
+  select * from users where left(email, 6) <> "intern" and is_deleted=false and left(email, 6) <> "nomail";
+```
+使用 left(args1, args2) 函数来实现，args1 表示数据库表字段，args2 表示从该字段起几个字符
 
 
 
