@@ -103,7 +103,9 @@ Error 1292: Incorrect datetime value: '0000-00-00' for column 'create_time' at r
 ```markdown
 Unable to load authentication plugin 'caching_sha2_password'.
 ```
- 这是 mysql 5.x 和 8.x 的区别，5.x 版本的认证插件是：default_authentication_plugin=mysql_native_password，8.x 的认证插件是：default_authentication_plugin=caching_sha2_password。mysql 驱动已经更新适配了caching_sha2_password 的密码规则，升级到最新版本即可。
+这是 mysql 5.x 和 8.x 的区别，5.x 版本的认证插件是：default_authentication_plugin=mysql_native_password，8.x 的认证插件是：default_authentication_plugin=caching_sha2_password。
+ 
+mysql 驱动已经更新适配了caching_sha2_password 的密码规则，升级到最新版本即可。
 
 
 9、使用用户名和密码连接 MySQL 时，可能会报如下错误：
@@ -113,3 +115,34 @@ public key retrieval is not allowed
 在连接 MySQL 的参数中，设置 `allowPublicKeyRetrieval=true`，如果用户使用了 sha256_password 认证，密码在传输过程中必须使用 TLS 协议保护，但是如果 RSA 公钥不可用，可以使用服务器提供的公钥；可以在连接中通过 ServerRSAPublicKeyFile 指定服务器的 RSA 公钥，或者AllowPublicKeyRetrieval=True参数以允许客户端从服务器获取公钥；但是需要注意的是 AllowPublicKeyRetrieval=True可能会导致恶意的代理通过中间人攻击(MITM)获取到明文密码，所以默认是关闭的，必须显式开启。
 
 参考：https://mysqlconnector.net/connection-options/
+
+10、我们在一个 for 循环中，对于每一个元素，启动一个 golang 协程去操作数据库，日志中报错如下：
+```markdown
+[2020-08-08 11:12:28]  [0.13ms]  DELETE FROM `messages`  WHERE (isCurrentUpdate = false)  
+[0 rows affected or returned ] 
+[mysql] 2020/08/08 11:12:28 packets.go:446: busy buffer
+[mysql] 2020/08/08 11:12:28 packets.go:427: busy buffer
+
+(/Users/wanghuan/GolandProjects/GoPath/src/github.com/xdhuxc/xdhuxc-message/src/service/message.go:246) 
+[2020-08-08 11:12:28]  driver: bad connection 
+ERRO[2020-08-08 11:12:28]/Users/wanghuan/GolandProjects/GoPath/src/github.com/xdhuxc/xdhuxc-message/src/service/message.go:247 github.com/xdhuxc/xdhuxc-message/src/service.(*messageService).message() 删除数据时出错，错误为：driver: bad connection 
+```
+
+这是由于程序执行太快，可用连接不足导致的，增大程序可以打开的最大连接数，适当减慢程序运行。
+
+具体代码实现如下：
+1、将程序可以打开的连接数增大
+```markdown
+db.DB().SetMaxOpenConns(5000)
+```
+
+2、减慢程序运行
+```markdown
+for _, stock := range stocks {	
+	time.Sleep(50*time.Millisecond)
+
+	go func(user model.User) {}	
+}
+```
+
+

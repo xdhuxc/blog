@@ -57,3 +57,8 @@ Mac 系统的环境变量，加载顺序为：`/etc/profile`，`/etc/paths`，`~
 ```markdown
 sudo killall coreaudiod
 ```
+
+4、清除 DNS 缓存，使用如下命令清除 DNS 缓存
+```markdown
+sudo killall -HUP mDNSResponder
+```
