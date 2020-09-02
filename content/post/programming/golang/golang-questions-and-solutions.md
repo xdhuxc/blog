@@ -48,7 +48,7 @@ make: *** [build] Error 1
 ```markdown
 wanghuans-MacBook-Pro:hawkeye wanghuan$ make build
 >> go build ...
-# gitlab.ushareit.org/SGT/DevOps/hawkeye/src/apis
+# gitlab.xdhuxc.org/SGT/DevOps/hawkeye/src/apis
 src/apis/base.go:55:38: cannot use req (type *"gitlab.xdhuxc.com/xdhuxc/hawkeye/vendor/github.com/emicklei/go-restful".Request) as type *"github.com/emicklei/go-restful".Request in argument to b.auth.GetCustomValue
 src/apis/router.go:54:46: cannot use baseController.auth.Auth (type func(*"github.com/emicklei/go-restful".Request, *"github.com/emicklei/go-restful".Response, *"github.com/emicklei/go-restful".FilterChain)) as type "gitlab.xdhuxc.com/xdhuxc/hawkeye/vendor/github.com/emicklei/go-restful".FilterFunction in argument to baseController.ws.Filter
 make: *** [build] Error 2
@@ -115,3 +115,28 @@ export GO111MODULE=on
 ],
 "go.testTimeout": "300s",  # 单元测试执行时间超过 300s，则直接结束该测试，
 ```
+
+### 使用 git 拉取私有仓库代码时，报错
+
+```
+wanghuan@wanghuans-MBP xdhuxc-cicd % make build
+>> go build ...
+go: finding module for package gitlab.xdhuxc.com/sgt/xdhuxc-common/log
+go: finding module for package gitlab.xdhuxc.com/sgt/xdhuxc-common/src/models
+go: finding module for package gitlab.xdhuxc.com/sgt/xdhuxc-jenkins
+go: finding module for package gitlab.xdhuxc.com/sgt/xdhuxc-common/pkg
+go: finding module for package gitlab.xdhuxc.com/sgt/xdhuxc-common/src/service
+go: finding module for package gitlab.xdhuxc.com/sgt/xdhuxc-common/event
+src/apis/base.go:9:2: module gitlab.xdhuxc.com/sgt/xdhuxc-common/event: git ls-remote -q origin in /Users/wanghuan/GolandProjects/GoPath/pkg/mod/cache/vcs/28da36e7c579b99f1d7066993405e1672802dc58e6f44b68d781fae79c0b54fb: exit status 128:
+        fatal: could not read Username for 'https://gitlab.xdhuxc.com': terminal prompts disabled
+Confirm the import path was entered correctly.
+If this is a private repository, see https://golang.org/doc/faq#git_https for additional information.
+```
+
+参照 https://golang.org/doc/faq#git_https 中的方法，在 ~/.gitconfig 文件中加入如下内容：
+```
+[url "ssh://git@gitlab.xdhuxc.com/"]
+        insteadOf = https://gitlab.xdhuxc.com/
+```
+
+
