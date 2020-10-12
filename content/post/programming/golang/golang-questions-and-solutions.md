@@ -139,4 +139,30 @@ If this is a private repository, see https://golang.org/doc/faq#git_https for ad
         insteadOf = https://gitlab.xdhuxc.com/
 ```
 
+### This download does NOT match the one reported by the checksum server.
+
+使用 `go mod tidy` 整理 golang 项目依赖时，控制台显示如下错误：
+```markdown
+wanghuan@wanghuans-MacBook-Pro scmp-common % go mod tidy
+github.com/panjf2000/ants@v1.2.0: verifying module: checksum mismatch
+        downloaded: h1:Ufw4aDz9RqH1RVblx2W9L9Uv5vSX5apbX5+peR7LQ5k=
+        sum.golang.org: h1:pMQ1/XpSgnWx3ro4y1xr/uA3jXUsTuAaU3Dm0JjwggE=
+
+SECURITY ERROR
+This download does NOT match the one reported by the checksum server.
+The bits may have been replaced on the origin server, or an attacker may
+have intercepted the download attempt.
+
+For more information, see 'go help module-auth'.
+```
+
+解决：先清理 mod 的缓存，然后再指定该命令
+```markdown
+go clean -modcache
+go mod tidy
+```
+
+
+
+
 
