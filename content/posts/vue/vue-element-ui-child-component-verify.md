@@ -1,6 +1,6 @@
 +++
 title = "Vue + Element-UI 子组件表单校验功能"
-date = "2012-03-26"
+date = "2020-03-26"
 lastmod = "2020-03-26"
 tags = [
     "Vue",
