@@ -18,7 +18,7 @@ rm -r ./*
 cd ..
 
 echo -e "\033[0;32mBuild the blog.\033[0m"
-hugo -t even  # if using a theme, replace with `hugo -t <YOURTHEME>`
+hugo -t meme  # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Go To Public folder
 cd public
