@@ -1,16 +1,5 @@
 ### blog
 
-
-
-### 引入不蒜子计数
-
-```
-{{ if and .Site.Params.busuanzi.enable .Site.Params.busuanzi.pagePV -}}
-    {{ $valueSpan := printf `<span id="busuanzi_value_page_pv"><img src="%s" alt="spinner.svg"/></span>` ("img/spinner.svg" | relURL) -}}
-    <span id="busuanzi_container_page_pv" class="more-meta"> {{ printf (T "pagePV") $valueSpan | safeHTML }} </span>
-{{- end }}
-```
-
 ### 使用 MemE 主题
 
 1、使用
@@ -22,7 +11,7 @@ git clone --depth 1 https://github.com/reuixiy/hugo-theme-meme.git themes/meme
 ```
 git submodule update --rebase --remote
 ```
-
+3、启动，本地预览
 ```
 hugo server -D -t meme --disableFastRender=true
 ```
