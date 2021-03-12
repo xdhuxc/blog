@@ -1,5 +1,5 @@
 +++
-title = "Golang flag 包读取参数怪事"
+title = "Golang 基准测试的使用方法"
 date = "2021-03-08"
 lastmod = "2021-03-08"
 tags = [
