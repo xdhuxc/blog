@@ -6,7 +6,7 @@ tags = [
     "Docker"
 ]
 categories = [
-     "技术"
+     "Docker"
 ]
 +++
 

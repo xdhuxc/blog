@@ -4,10 +4,11 @@ date = "2020-04-07"
 lastmod = "2020-04-07"
 description = ""
 tags = [
-    "Golang"
+    "Golang",
+    "TimeFormat"
 ]
 categories = [
-    "技术"
+    "Golang"
 ]
 +++
 

@@ -3,10 +3,11 @@ title = "Golang 将 GB2312编码的汉字 转为 UTF-8 编码的汉字"
 date = "2019-09-26"
 lastmod = "2019-09-26"
 tags = [
-    "Golang"
+    "Golang",
+    "字符集"
 ]
 categories = [
-    "技术"
+    "Golang"
 ]
 +++
 

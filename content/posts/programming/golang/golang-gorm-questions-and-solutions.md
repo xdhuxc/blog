@@ -9,7 +9,7 @@ tags = [
     "GORM"
 ]
 categories = [
-    "技术"
+    "Golang"
 ]
 +++
 

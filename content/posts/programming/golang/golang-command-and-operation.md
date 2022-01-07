@@ -6,7 +6,7 @@ tags = [
     "Golang"
 ]
 categories = [
-    "技术"
+    "Golang"
 ]
 +++
 

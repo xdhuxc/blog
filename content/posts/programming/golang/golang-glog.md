@@ -5,10 +5,10 @@ lastmod = "2019-08-09"
 description = ""
 tags = [
     "Golang",
-    "glog"
+    "Log"
 ]
 categories = [
-    "技术"
+    "Golang"
 ]
 +++
 

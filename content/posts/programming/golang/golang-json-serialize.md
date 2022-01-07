@@ -7,7 +7,7 @@ tags = [
     "JSON"
 ]
 categories = [
-    "技术"
+    "Golang"
 ]
 +++
 

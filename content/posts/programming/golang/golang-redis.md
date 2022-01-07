@@ -8,7 +8,7 @@ tags = [
     "Redis"
 ]
 categories = [
-    "技术"
+    "Golang"
 ]
 +++
 

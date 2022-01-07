@@ -6,11 +6,11 @@ tags = [
     "Golang"
 ]
 categories = [
-    "技术"
+    "Golang"
 ]
 +++
 
-本部分内容记录下 golang 开发时常见的一些问题及解决方法，以备后需。
+本部分内容记录下 golang 开发时常见的一些问题及解决方法。
 
 <!--more-->
 

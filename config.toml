@@ -135,9 +135,9 @@ uglyURLs = false
     baseName = "rss"
 
 # lunr.js 的搜索索引
-# [outputFormats.SearchIndex]
-#     mediaType = "application/json"
-#     baseName = "search"
+[outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "search"
 
 # Hugo 的输出控制
 [outputs]
@@ -214,10 +214,10 @@ uglyURLs = false
     [[menu.main]]
         weight = 7
         identifier = "lang-switcher"
-    # [[menu.main]]
-    #     weight = 8
-    #     identifier = "search"
-    #     post = "search"
+    [[menu.main]]
+        weight = 8
+        identifier = "search"
+        post = "search"
 
 
 
@@ -298,7 +298,7 @@ uglyURLs = false
 
     ## 「诗意人生」
     # 诗句，支持 Markdown
-    homePoetry = []
+    homePoetry = ["我有平生事，只与明月听", "共道人间惆怅事，不知今夕是何年", "永言配命，自求多福", "桃李不言，下自成蹊"]
     # 底部链接的内间距，单位：em
     homeLinksPadding = 1
 
@@ -647,10 +647,10 @@ uglyURLs = false
     googleAdClient = ""
 
     ## 自动广告
-    enableGoogleAutoAds = false
+    enableGoogleAutoAds = true
 
     ## 广告单元
-    enableGoogleAdUnits = false
+    enableGoogleAdUnits = true
     googleAdSlot = ""
 
 

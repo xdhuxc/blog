@@ -3,11 +3,11 @@ title = "Golang 基准测试的使用方法"
 date = "2021-03-08"
 lastmod = "2021-03-08"
 tags = [
-    "golang",
-    "benchmark"
+    "Golang",
+    "Benchmark"
 ]
 categories = [
-    "技术"
+    "Golang"
 ]
 +++
 

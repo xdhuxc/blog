@@ -8,11 +8,11 @@ tags = [
     "DNS"
 ]
 categories = [
-    "技术"
+    "DNS"
 ]
 +++
 
-本篇博客记录了 dnsmasq 的配置和使用，以备后查。
+本篇博客记录了 dnsmasq 的配置和使用。
 
 <!--more-->
 

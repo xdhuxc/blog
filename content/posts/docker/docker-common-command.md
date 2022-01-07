@@ -7,11 +7,11 @@ tags = [
     "Docker"
 ]
 categories = [
-     "技术"
+     "Docker"
 ]
 +++
 
-本篇博客记录了在使用 docker 的过程中经常使用的一些命令，以备后需。
+本篇博客记录了在使用 docker 的过程中经常使用的一些命令。
 
 <!--more-->
 

@@ -8,7 +8,7 @@ tags = [
     "DNS"
 ]
 categories = [
-    "技术"
+    "DNS"
 ]
 +++
 

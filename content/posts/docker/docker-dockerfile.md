@@ -8,7 +8,7 @@ tags = [
     "Dockerfile"
 ]
 categories = [
-     "技术"
+     "Docker"
 ]
 +++
 
