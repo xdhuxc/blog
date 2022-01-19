@@ -6,7 +6,7 @@ tags = [
     "Python"
 ]
 categories = [
-    "技术"
+    "Python"
 ]
 +++
 

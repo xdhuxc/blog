@@ -7,7 +7,7 @@ tags = [
     "Flask"
 ]
 categories = [
-    "技术"
+    "Python"
 ]
 +++
 
