@@ -9,7 +9,7 @@ tags = [
     "GitLab"
 ]
 categories = [
-     "技术"
+     "Git"
 ]
 +++
 

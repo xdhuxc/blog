@@ -6,7 +6,7 @@ tags = [
     "VMware"
 ]
 categories = [
-    "技术"
+    "VMware"
 ]
 +++
 

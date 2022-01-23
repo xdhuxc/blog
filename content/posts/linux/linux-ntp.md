@@ -7,7 +7,7 @@ tags = [
     "NTP"
 ]
 categories = [
-    "技术"
+    "Linux"
 ]
 +++
 

@@ -7,7 +7,7 @@ tags = [
     "iptables"
 ]
 categories = [
-    "技术"
+    "Linux"
 ]
 +++
 

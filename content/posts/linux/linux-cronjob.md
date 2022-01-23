@@ -7,7 +7,7 @@ tags = [
     "Shell"
 ]
 categories = [
-    "技术"
+    "Linux"
 ]
 +++
 

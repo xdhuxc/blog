@@ -8,7 +8,7 @@ tags = [
     "YUM"
 ]
 categories = [
-    "技术"
+    "Linux"
 ]
 +++
 

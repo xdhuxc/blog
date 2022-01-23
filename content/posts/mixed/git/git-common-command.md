@@ -7,7 +7,7 @@ tags = [
     "Git"
 ]
 categories = [
-     "技术"
+     "Git"
 ]
 +++
 
@@ -130,6 +130,13 @@ git checkout xdhuxc
 ```markdown
 git push origin xdhuxc
 ```
+
+4. 返回当前分支的名称
+```markdown
+git rev-parse --abbrev-ref HEAD
+```
+此命令会返回当前分支的名称，由于所有的代码肯定会在一个分支上，所以，此命令绝对不会出错。
+
 
 #### git 将一个本地工程推向多个远程仓库
 推送时，可以同时推送至多个远程仓库

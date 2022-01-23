@@ -7,7 +7,7 @@ tags = [
     "iptraf"
 ]
 categories = [
-    "技术"
+    "Linux"
 ]
 +++
 

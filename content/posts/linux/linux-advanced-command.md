@@ -7,7 +7,7 @@ tags = [
     "linux"
 ]
 categories = [
-     "技术"
+     "linux"
 ]
 +++
 

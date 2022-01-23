@@ -7,7 +7,7 @@ tags = [
     "systemd"
 ]
 categories = [
-    "技术"
+    "Linux"
 ]
 +++
 
