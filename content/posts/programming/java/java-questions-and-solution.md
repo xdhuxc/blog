@@ -7,7 +7,7 @@ tags = [
     "Java"
 ]
 categories = [
-    "技术"
+    "Java"
 ]
 +++
 

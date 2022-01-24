@@ -8,7 +8,8 @@ tags = [
     "Java"
 ]
 categories = [
-    "技术"
+    "Maven",
+    "Java"
 ]
 +++
 

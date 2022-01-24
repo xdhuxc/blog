@@ -6,7 +6,7 @@ tags = [
     "JavaScript"
 ]
 categories = [
-    "技术"
+    "JavaScript"
 ]
 +++
 

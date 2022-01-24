@@ -1317,7 +1317,7 @@ uglyURLs = false
     #       Algolia every time you rebuild
     #       your site.
 
-    enableAlgoliaSearch = true
+    enableAlgoliaSearch = false
 
     algoliaAppId = "RS5ZS3ZIXB"
     algoliaApiKey = "297ee3ba2449ef4e9b3a98e4bca5a18f"

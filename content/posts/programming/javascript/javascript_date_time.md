@@ -7,13 +7,11 @@ tags = [
     "JavaScript"
 ]
 categories = [
-    "技术"
+    "JavaScript"
 ]
 +++
 
-摘要：
-
-　　本篇博客主要介绍 JavaScript 中的日期时间与Unix时间戳的转换及日期的格式化，都是在前端开发中经常会用到技术。
+本篇博客主要介绍 JavaScript 中的日期时间与Unix时间戳的转换及日期的格式化，都是在前端开发中经常会用到技术。
 
 <!--more-->
 
